@@ -135,7 +135,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 .footer-links{display:flex;gap:19px;flex-wrap:wrap}
 .loading-dots:after{content:"";animation:dots 1.2s steps(4,end) infinite}
 @keyframes dots{0%,20%{content:""}40%{content:"."}60%{content:".."}80%,100%{content:"..."}}
-@media(max-width:850px){.nav-links{gap:14px}.nav-links a:not(.btn){display:none}.hero-grid,.upload-layout{grid-template-columns:1fr;gap:35px}.hero{padding-top:65px}.features,.pricing-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}}
+@media(max-width:850px){.nav-links{gap:14px}.hero-grid,.upload-layout{grid-template-columns:1fr;gap:35px}.hero{padding-top:65px}.features,.pricing-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}}
 @media(max-width:540px){.container{width:91%}.nav-inner{min-height:67px}.brand{font-size:20px}.logo{width:35px;height:35px}.currency{padding:8px 6px;max-width:83px;font-size:12px}.nav-links{gap:8px}.nav-links .btn{padding:10px 12px;font-size:12px}h1{letter-spacing:-2px}.hero{padding:57px 0}section{padding:60px 0}.features,.pricing-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.preview,.upload-card{padding:20px}.cta-panel{padding:35px 19px}.results-header{padding:20px;flex-direction:column}.results-body{padding:15px}.result-section{padding:16px}.results-footer{padding:14px 20px}}
 </style>
 </head>
@@ -182,7 +182,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <article class="feature"><div class="feature-icon">🧾</div><h3>Plain-language explanations</h3><p>Understand unfamiliar billing terms, service descriptions, and the difference between billed and paid amounts.</p></article>
 <article class="feature"><div class="feature-icon">💬</div><h3>Questions to ask</h3><p>Prepare specific questions for your provider or insurer when a charge, code, or claim decision is unclear.</p></article>
 <article class="feature"><div class="feature-icon">📊</div><h3>Expense breakdown</h3><p>Organize the information shown on a statement so you can see where the total cost comes from.</p></article>
-<article class="feature"><div class="feature-icon">🌍</div><h3>Flexible currencies</h3><p>Display example amounts and subscription prices in supported currencies. Currency display does not convert actual charges.</p></article>
+<article class="feature"><div class="feature-icon">🌍</div><h3>Flexible currencies</h3><p>Display example amounts and subscription prices in supported currencies using exchange-rate estimates. Actual bill charges remain unchanged.</p></article>
 <article class="feature"><div class="feature-icon">🛡️</div><h3>Privacy-conscious design</h3><p>Files are processed by the backend for analysis. Review the privacy and retention safeguards before uploading sensitive records.</p></article>
 </div>
 </div>
@@ -231,7 +231,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <article class="price-card popular"><div class="plan-label">Plus · Most popular</div><div class="price"><span data-money="19">AED 19</span><small> / month</small></div><p class="price-description">For people who want more help understanding bills.</p><ul class="plan-list"><li>AI-assisted bill explanations</li><li>Charge-by-charge review</li><li>Questions to ask your provider</li></ul><a href="#analyze" class="btn btn-primary">Try bill review</a></article>
 <article class="price-card"><div class="plan-label">Family</div><div class="price"><span data-money="39">AED 39</span><small> / month</small></div><p class="price-description">A proposed option for household billing support.</p><ul class="plan-list"><li>Features planned for Plus</li><li>Household-oriented guidance</li><li>Subscription not active yet</li></ul><a href="#analyze" class="btn btn-outline">Explore</a></article>
 </div>
-<p class="pricing-disclaimer">Prices are illustrative and shown in the selected currency; switching currency changes display only and does not perform exchange-rate conversion. Checkout is not active.</p>
+<p class="pricing-disclaimer">Prices are based on AED amounts and converted using exchange-rate estimates. Rates can fluctuate, and displayed values are estimates. Checkout is not active.</p>
 </div>
 </section>
 
@@ -241,7 +241,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 <div class="faq-list">
 <article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave prove a bill is wrong?<span>＋</span></button><div class="faq-answer">No. MedSave can point out possible inconsistencies or unclear charges, but only the provider or insurer can confirm what a charge means and whether a correction is appropriate.</div></article>
 <article class="faq-item"><button class="faq-question" aria-expanded="false">What file types can I upload?<span>＋</span></button><div class="faq-answer">This version accepts PDF, JPG, and PNG files up to 10 MB. Image quality, document layout, and scanned text can affect the analysis.</div></article>
-<article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave convert currencies?<span>＋</span></button><div class="faq-answer">No. The currency selector changes the display of example amounts and proposed subscription prices. It does not convert the amounts printed on your bill.</div></article>
+<article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave convert currencies?<span>＋</span></button><div class="faq-answer">Yes. The selector converts illustrative amounts and proposed subscription prices from AED using exchange-rate estimates. It does not alter the amounts printed on your uploaded bill.</div></article>
 <article class="faq-item"><button class="faq-question" aria-expanded="false">Is my bill stored?<span>＋</span></button><div class="faq-answer">This starter implementation processes the upload in server memory and does not intentionally save the file to disk. That alone is not a complete privacy guarantee: hosting providers, AI processing terms, logs, and retention settings must be reviewed before real medical records are used.</div></article>
 <article class="faq-item"><button class="faq-question" aria-expanded="false">Is the subscription checkout active?<span>＋</span></button><div class="faq-answer">No. The displayed plans are proposed pricing only. Payment processing and subscription access are not implemented.</div></article>
 </div>
@@ -266,45 +266,7 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 
 const API_URL = "https://medsave-api.onrender.com/api/analyze";
 
-const currencySelect = document.getElementById("currency");
-
-const currencyLocales = {
-  AED: "en-AE",
-  USD: "en-US",
-  INR: "en-IN",
-  EUR: "de-DE",
-  GBP: "en-GB",
-  SAR: "en-SA"
-};
-
-// All rates represent how much of the target currency
-// equals 1 AED. These are fallback estimates if the API fails.
-let currencyRates = {
-  AED: 1,
-  USD: 0.272294,
-  INR: 26.3093,
-  EUR: 0.242807,
-  GBP: 0.205894,
-  SAR: 1.02231
-};
-
-function formatMoney(amount) {
-  const currency = currencySelect.value;
-  const rate = currencyRates[currency] ?? 1;
-  const convertedAmount = Number(amount) * rate;
-
-  try {
-    return new Intl.NumberFormat(currencyLocales[currency], {
-      style: "currency",
-      currency,
-      maximumFractionDigits: 2
-    }).format(convertedAmount);
-  } catch {
-    return `${currency} ${convertedAmount.toFixed(2)}`;
-  }
-}
-
-
+/* ---------------- CURRENCY CONVERSION ---------------- */
 
 const currencySelect = document.getElementById("currency");
 
@@ -317,6 +279,7 @@ const currencyLocales = {
   SAR: "en-SA"
 };
 
+// Fallback rates: units of target currency for 1 AED.
 let currencyRates = {
   AED: 1,
   USD: 0.272294,
@@ -328,8 +291,14 @@ let currencyRates = {
 
 function formatMoney(amountAED) {
   const currency = currencySelect.value;
+  const amount = Number(amountAED);
+
+  if (!Number.isFinite(amount)) {
+    return String(amountAED);
+  }
+
   const rate = currencyRates[currency] ?? 1;
-  const convertedAmount = Number(amountAED) * rate;
+  const convertedAmount = amount * rate;
 
   return new Intl.NumberFormat(
     currencyLocales[currency] || "en",
@@ -343,9 +312,16 @@ function formatMoney(amountAED) {
 
 function updateCurrency() {
   document.querySelectorAll("[data-money]").forEach(element => {
+    // Always convert from the original AED amount stored in HTML.
     element.textContent = formatMoney(element.dataset.money);
   });
 }
+
+// This function is registered once. Changing the dropdown updates prices.
+currencySelect.addEventListener("change", updateCurrency);
+
+// Display fallback conversions immediately, even if the rates API is unavailable.
+updateCurrency();
 
 async function loadCurrencyRates() {
   try {
@@ -374,25 +350,29 @@ async function loadCurrencyRates() {
     updateCurrency();
   } catch (error) {
     console.warn("Using fallback exchange rates:", error);
+    // The fallback rates still let the currency selector work.
     updateCurrency();
   }
 }
 
-currencySelect.addEventListener("change", updateCurrency);
-
-updateCurrency();
 loadCurrencyRates();
 
-document.getElementById("year").textContent = new Date().getFullYear();
+/* ---------------- GENERAL WEBSITE ---------------- */
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 
 document.querySelectorAll(".faq-question").forEach(button => {
   button.addEventListener("click", () => {
     const item = button.closest(".faq-item");
     const open = !item.classList.contains("open");
+
     item.classList.toggle("open", open);
     button.setAttribute("aria-expanded", String(open));
   });
 });
+
+/* ---------------- BILL UPLOAD AND ANALYSIS ---------------- */
 
 const fileInput = document.getElementById("billFile");
 const fileName = document.getElementById("fileName");
@@ -401,8 +381,13 @@ const uploadNotice = document.getElementById("uploadNotice");
 const results = document.getElementById("results");
 const resultsBody = document.getElementById("resultsBody");
 const resultsSubtitle = document.getElementById("resultsSubtitle");
+
 const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const ALLOWED_TYPES = ["application/pdf", "image/jpeg", "image/png"];
+const ALLOWED_TYPES = [
+  "application/pdf",
+  "image/jpeg",
+  "image/png"
+];
 
 function showNotice(message, isError = false) {
   uploadNotice.textContent = message;
@@ -410,10 +395,6 @@ function showNotice(message, isError = false) {
   uploadNotice.style.display = "block";
 }
 
-/*
- * Validate files in the browser for convenience.
- * The backend must independently enforce its own file and content checks.
- */
 fileInput.addEventListener("change", () => {
   uploadNotice.style.display = "none";
   results.style.display = "none";
@@ -435,7 +416,10 @@ fileInput.addEventListener("change", () => {
   if (file.size > MAX_FILE_SIZE) {
     fileInput.value = "";
     fileName.textContent = "";
-    showNotice("Your file exceeds 10 MB. Please choose a smaller document.", true);
+    showNotice(
+      "Your file exceeds 10 MB. Please choose a smaller document.",
+      true
+    );
     return;
   }
 
@@ -443,12 +427,7 @@ fileInput.addEventListener("change", () => {
     `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
 });
 
-/*
- * Convert a limited subset of Markdown to HTML.
- * Escape all original text BEFORE adding the small set of HTML tags
- * generated by this function. This prevents raw AI output from inserting
- * arbitrary HTML or executable attributes.
- */
+/* Escape text before turning the supported Markdown into HTML. */
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({
     "&": "&amp;",
@@ -507,7 +486,8 @@ function markdownToHtml(markdown) {
 
     if (tableRows.length >= 2 && isTableSeparator(tableRows[1])) {
       const headers = getCells(tableRows[0]);
-      const rows = tableRows.slice(2).filter(row => !isTableSeparator(row));
+      const rows = tableRows.slice(2)
+        .filter(row => !isTableSeparator(row));
 
       html += '<div class="table-wrap"><table><thead><tr>';
 
@@ -530,7 +510,6 @@ function markdownToHtml(markdown) {
 
       html += "</tbody></table></div>";
     } else {
-      // If the lines are not a valid Markdown table, keep them as text.
       tableRows.forEach(row => {
         html += `<p>${inlineMarkdown(row)}</p>`;
       });
@@ -549,7 +528,8 @@ function markdownToHtml(markdown) {
       continue;
     }
 
-    const looksLikeTable = line.includes("|") && line.split("|").length >= 3;
+    const looksLikeTable =
+      line.includes("|") && line.split("|").length >= 3;
 
     if (looksLikeTable) {
       flushParagraph();
@@ -607,10 +587,7 @@ function markdownToHtml(markdown) {
   return html || "<p>No review text was returned.</p>";
 }
 
-/*
- * Split the AI response into readable cards based on Markdown headings.
- * The card title is assigned with textContent, not interpreted as HTML.
- */
+/* Split the AI response into readable cards based on Markdown headings. */
 function renderReview(markdown) {
   const text = String(markdown || "");
 
@@ -673,10 +650,15 @@ analyzeBtn.addEventListener("click", async () => {
   }
 
   const oldText = analyzeBtn.textContent;
-  analyzeBtn.disabled = true;
-  analyzeBtn.innerHTML = '<span class="loading-dots">Analyzing your bill</span>';
 
-  showNotice("Sending the document for analysis. This may take a little while if the server is waking up.");
+  analyzeBtn.disabled = true;
+  analyzeBtn.innerHTML =
+    '<span class="loading-dots">Analyzing your bill</span>';
+
+  showNotice(
+    "Sending the document for analysis. This may take a little while if the server is waking up."
+  );
+
   results.style.display = "none";
 
   try {
@@ -697,7 +679,9 @@ analyzeBtn.addEventListener("click", async () => {
     }
 
     if (!response.ok) {
-      throw new Error(data.error || "Analysis failed. Please try again.");
+      throw new Error(
+        data.error || "Analysis failed. Please try again."
+      );
     }
 
     if (!data.review) {
@@ -711,11 +695,22 @@ analyzeBtn.addEventListener("click", async () => {
 
     results.style.display = "block";
 
-    showNotice("Review ready. Please verify important details against your original document.");
-    results.scrollIntoView({ behavior: "smooth", block: "start" });
+    showNotice(
+      "Review ready. Please verify important details against your original document."
+    );
+
+    results.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
   } catch (error) {
     console.error("MedSave request failed:", error);
-    showNotice(error.message || "We couldn't analyze the document. Please try again.", true);
+
+    showNotice(
+      error.message ||
+      "We couldn't analyze the document. Please try again.",
+      true
+    );
   } finally {
     analyzeBtn.disabled = false;
     analyzeBtn.textContent = oldText;
