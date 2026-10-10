@@ -1276,7 +1276,7 @@ analyzeBtn.addEventListener("click", async () => {
       throw new Error("No review was returned. Please try again.");
     }
 
-    renderAuditDashboard(data.audit, data.isMedicalBill);
+
     renderReview(data.review);
     renderDisputeLetters(data, file.name);
     resultsSubtitle.textContent =
