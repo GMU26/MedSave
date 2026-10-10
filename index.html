@@ -310,6 +310,110 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
   .results-body { padding:20px; }
   .results-footer { padding:14px 20px; }
 }
+  
+/* MedSave — dispute letter generator */
+.medsave-letters {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid rgba(120, 160, 150, 0.28);
+  border-radius: 18px;
+  background: rgba(15, 30, 40, 0.72);
+  color: inherit;
+}
+
+.medsave-letters h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.medsave-letters-intro {
+  color: #aabac4;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.medsave-letter-card {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid rgba(120, 160, 150, 0.2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.medsave-letter-card h3 {
+  margin-top: 0;
+  margin-bottom: 8px;
+}
+
+.medsave-letter-card p {
+  color: #aabac4;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.medsave-letter-text {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 300px;
+  padding: 14px;
+  border: 1px solid #344852;
+  border-radius: 10px;
+  background: #101d26;
+  color: #edf5f5;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.65;
+  resize: vertical;
+}
+
+.medsave-letter-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.medsave-copy-button {
+  border: 0;
+  border-radius: 9px;
+  padding: 11px 16px;
+  background: #8fe0bb;
+  color: #10251d;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.medsave-copy-button:hover {
+  filter: brightness(1.06);
+}
+
+.medsave-copy-status {
+  color: #8fe0bb;
+  font-size: 13px;
+}
+
+.medsave-letter-note {
+  color: #aabac4;
+  font-size: 12px;
+  line-height: 1.6;
+  margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+  .medsave-letters {
+    padding: 16px;
+  }
+
+  .medsave-letter-card {
+    padding: 12px;
+  }
+
+  .medsave-letter-text {
+    min-height: 340px;
+  }
+}
+
 </style>
 </head>
 
@@ -904,6 +1008,213 @@ function renderReview(markdown) {
   });
 }
 
+
+function renderDisputeLetters(data, fileName) {
+  const resultsBody = document.getElementById("resultsBody");
+
+  if (!resultsBody) {
+    console.error("MedSave: resultsBody element not found.");
+    return;
+  }
+
+  // Remove the previous drafts when a new bill is analyzed.
+  document.getElementById("medsave-letter-generator")?.remove();
+
+  const audit = data?.audit || {};
+
+  // Try to use findings returned by the existing audit.
+  const possibleFindings =
+    audit.findings ||
+    audit.issues ||
+    audit.flags ||
+    audit.recommendations ||
+    [];
+
+  function describeFinding(item) {
+    if (typeof item === "string") return item;
+
+    if (item && typeof item === "object") {
+      return [
+        item.title,
+        item.description,
+        item.finding,
+        item.explanation,
+        item.recommendation
+      ].find(value => typeof value === "string" && value.trim());
+    }
+
+    return "";
+  }
+
+  let findingsText = "";
+
+  if (Array.isArray(possibleFindings)) {
+    findingsText = possibleFindings
+      .map(describeFinding)
+      .filter(Boolean)
+      .slice(0, 8)
+      .map((finding, index) => `${index + 1}. ${finding}`)
+      .join("\n");
+  } else if (typeof possibleFindings === "string") {
+    findingsText = possibleFindings;
+  }
+
+  if (!findingsText.trim()) {
+    findingsText =
+      "Please review the items identified in the attached MedSave audit report.";
+  }
+
+  const emailDraft = `Subject: Request for Clarification of Medical Bill
+
+Dear Billing Team,
+
+I am writing to request a review and clarification of my medical bill${fileName ? ` (${fileName})` : ""}.
+
+After reviewing the bill, I would appreciate your help in verifying the following item(s):
+
+${findingsText}
+
+Could you please confirm that the relevant services were provided, explain the charges and billing codes where applicable, and provide an itemized statement or any supporting documentation needed to clarify these entries?
+
+I understand that a flagged item does not necessarily mean a billing error has occurred. I would appreciate your investigation and a written explanation of the findings.
+
+Please let me know if you need any additional information from me.
+
+Kind regards,
+[Your full name]
+[Patient or invoice reference, if appropriate]
+[Date of service, if known]
+[Your contact details]`;
+
+  const formalDraft = `[Your full name]
+[Your contact details]
+[Date]
+
+To: Billing Department
+[Hospital or Clinic Name]
+[Hospital or Clinic Address]
+
+Subject: Formal Request for Review of Medical Billing Statement
+
+Dear Billing Department,
+
+I am writing to formally request a review of the medical billing statement associated with the following details:
+
+Patient name: [Patient name]
+Patient or invoice reference: [Reference number]
+Date of service: [Date of service]
+Bill reference: ${fileName || "[Bill reference]"}
+
+Following a review of the statement, I would appreciate clarification of the following item(s):
+
+${findingsText}
+
+Please investigate these entries and provide an itemized explanation of the charges, including the relevant service descriptions, quantities, billing codes, and supporting documentation where appropriate.
+
+If any discrepancy is confirmed, please explain the correction process and provide an updated statement. If the charges are correct, I would appreciate a clear written explanation supporting them.
+
+This request is made to clarify the bill and verify its accuracy. I am not assuming that an error has occurred, and I welcome any information that helps resolve the questions raised.
+
+Please acknowledge receipt of this request and advise me of the next steps and expected response timeframe.
+
+Thank you for your time and assistance.
+
+Yours faithfully,
+
+[Your full name]
+[Patient or invoice reference]
+[Signature, if submitting a printed letter]`;
+
+  const section = document.createElement("section");
+  section.id = "medsave-letter-generator";
+  section.className = "medsave-letters";
+
+  section.innerHTML = `
+    <h2>Dispute Letter Generator</h2>
+    <p class="medsave-letters-intro">
+      Use your audit findings to prepare a message for the hospital or clinic.
+      Review and edit all details before sending.
+    </p>
+
+    <div class="medsave-letter-card">
+      <h3>Professional email</h3>
+      <p>For requesting clarification from the billing team.</p>
+      <textarea
+        id="medsave-email-draft"
+        class="medsave-letter-text"
+        aria-label="Editable professional email draft"
+        spellcheck="true"
+      ></textarea>
+      <div class="medsave-letter-actions">
+        <button type="button" class="medsave-copy-button"
+          data-copy-target="medsave-email-draft">
+          Copy email
+        </button>
+        <span class="medsave-copy-status" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <div class="medsave-letter-card">
+      <h3>Formal dispute letter</h3>
+      <p>For a more structured written request to the billing department.</p>
+      <textarea
+        id="medsave-formal-draft"
+        class="medsave-letter-text"
+        aria-label="Editable formal dispute letter"
+        spellcheck="true"
+      ></textarea>
+      <div class="medsave-letter-actions">
+        <button type="button" class="medsave-copy-button"
+          data-copy-target="medsave-formal-draft">
+          Copy letter
+        </button>
+        <span class="medsave-copy-status" aria-live="polite"></span>
+      </div>
+    </div>
+
+    <p class="medsave-letter-note">
+      Important: These are draft templates, not legal advice.
+      Confirm all names, dates, references and findings before sending.
+      A flagged charge is not proof of an error. Avoid including unnecessary
+      sensitive medical information in correspondence.
+    </p>
+  `;
+
+  section.querySelector("#medsave-email-draft").value = emailDraft;
+  section.querySelector("#medsave-formal-draft").value = formalDraft;
+
+  section.querySelectorAll("[data-copy-target]").forEach(button => {
+    button.addEventListener("click", async () => {
+      const targetId = button.dataset.copyTarget;
+      const textarea = section.querySelector(`#${targetId}`);
+      const status = button.parentElement.querySelector(
+        ".medsave-copy-status"
+      );
+
+      try {
+        await navigator.clipboard.writeText(textarea.value);
+        status.textContent = "Copied! You can now paste it.";
+      } catch (error) {
+        // Fallback for browsers where clipboard access is unavailable.
+        textarea.focus();
+        textarea.select();
+
+        let copied = false;
+        try {
+          copied = document.execCommand("copy");
+        } catch (_) {}
+
+        status.textContent = copied
+          ? "Copied! You can now paste it."
+          : "Copy unavailable. Select the text and copy it manually.";
+      }
+    });
+  });
+
+  resultsBody.insertAdjacentElement("afterend", section);
+}
+
+  
 analyzeBtn.addEventListener("click", async () => {
   const file = fileInput.files[0];
 
@@ -965,8 +1276,9 @@ analyzeBtn.addEventListener("click", async () => {
       throw new Error("No review was returned. Please try again.");
     }
 
+    renderAuditDashboard(data.audit, data.isMedicalBill);
     renderReview(data.review);
-
+    renderDisputeLetters(data, file.name);
     resultsSubtitle.textContent =
       `Review generated for ${file.name}. Check every figure against the original bill.`;
 
