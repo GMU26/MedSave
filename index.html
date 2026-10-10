@@ -958,9 +958,10 @@
     const uploadNotice = document.getElementById("uploadNotice");
 
     function showNotice(message) {
-      uploadNotice.textContent = message;
-      uploadNotice.style.display = "block";
-    }
+  uploadNotice.textContent = message;
+  uploadNotice.style.display = "block";
+  uploadNotice.style.whiteSpace = "pre-wrap";
+}
 
     fileInput.addEventListener("change", () => {
       uploadNotice.style.display = "none";
@@ -996,19 +997,77 @@
         `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
     });
 
-    analyzeBtn.addEventListener("click", () => {
-      const file = fileInput.files[0];
+   
+analyzeBtn.addEventListener("click", async () => {
+  const file = fileInput.files[0];
 
-      if (!file) {
-        showNotice("Choose a medical bill first.");
-        fileInput.click();
-        return;
+  if (!file) {
+    showNotice("Choose a medical bill first.");
+    fileInput.click();
+    return;
+  }
+
+  const allowedTypes = [
+    "application/pdf",
+    "image/jpeg",
+    "image/png"
+  ];
+
+  if (!allowedTypes.includes(file.type)) {
+    showNotice("Please choose a PDF, JPG, or PNG file.");
+    return;
+  }
+
+  if (file.size > 10 * 1024 * 1024) {
+    showNotice("Your file exceeds the 10 MB limit.");
+    return;
+  }
+
+  const originalText = analyzeBtn.textContent;
+  analyzeBtn.disabled = true;
+  analyzeBtn.textContent = "Analyzing bill...";
+
+  showNotice(
+    "Connecting to MedSave AI. This may take a moment if the server is waking up."
+  );
+
+  try {
+    const formData = new FormData();
+    formData.append("bill", file);
+
+    const response = await fetch(
+      "https://medsave-api.onrender.com/api/analyze",
+      {
+        method: "POST",
+        body: formData
       }
+    );
 
-      showNotice(
-        "Your file passed the local checks. AI analysis is not connected yet, and the document has not been uploaded."
-      );
-    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Analysis failed. Please try again.");
+    }
+
+    showNotice(
+      "MEDSAVE AI REVIEW\n\n" +
+      data.review +
+      "\n\n" +
+      (data.disclaimer || "Please confirm concerns with your provider or insurer.")
+    );
+  } catch (error) {
+    console.error("MedSave analysis error:", error);
+
+    showNotice(
+      "We couldn't analyze your bill.\n\n" +
+      (error.message || "Please try again later.")
+    );
+  } finally {
+    analyzeBtn.disabled = false;
+    analyzeBtn.textContent = originalText;
+  }
+});
+
 
     document.querySelectorAll(".plan-btn").forEach(button => {
       button.addEventListener("click", () => {
