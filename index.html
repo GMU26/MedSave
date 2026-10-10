@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#071b27">
 <meta name="description" content="MedSave helps you understand medical bills, review charges, and prepare questions for your healthcare provider.">
+<link rel="icon" type="image/png" href="logo.png">
 <title>MedSave — Understand Every Medical Bill</title>
 <style>
 :root{--bg:#071b27;--panel:#0d2633;--panel2:#12313e;--green:#a9f5cf;--green2:#66d9a4;--white:#f4faf8;--muted:#a1b5bc;--border:rgba(255,255,255,.11);--red:#ffb8b8;--amber:#ffe0a1;--radius:22px}
@@ -19,8 +20,8 @@ button{cursor:pointer}
 .container{width:min(1160px,90%);margin:auto}
 .navbar{position:sticky;top:0;z-index:10;background:rgba(7,27,39,.93);backdrop-filter:blur(18px);border-bottom:1px solid var(--border)}
 .nav-inner{min-height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:800;letter-spacing:-.8px}
-.logo{width:40px;height:40px;border-radius:13px;background:var(--green);color:var(--bg);display:grid;place-items:center;font-size:24px;font-weight:900}
+.brand{display:flex;align-items:center;gap:11px;font-size:23px;font-weight:800;letter-spacing:-.8px;flex-shrink:0}
+.brand-logo{width:40px;height:40px;object-fit:contain;display:block;flex-shrink:0}
 .brand span:last-child{color:var(--green)}
 .nav-links{display:flex;align-items:center;gap:24px;color:var(--muted);font-size:14px}
 .nav-links a:hover{color:var(--green)}
@@ -87,27 +88,22 @@ section{padding:78px 0}
 .results-header p{color:var(--muted);font-size:13px;margin-top:4px}
 .result-badge{border:1px solid rgba(169,245,207,.25);background:rgba(169,245,207,.08);color:var(--green);padding:5px 9px;border-radius:999px;font-size:11px;white-space:nowrap}
 .results-body{padding:25px}
-.result-section{margin:0 0 18px;padding:21px;border:1px solid var(--border);background:linear-gradient(145deg,rgba(18,49,62,.8),rgba(13,38,51,.8));border-radius:17px;min-width:0}
+.result-section{margin-bottom:24px}
 .result-section:last-child{margin-bottom:0}
-.result-section>h4{font-size:16px;margin-bottom:13px;color:var(--green);line-height:1.5}
-.result-content{color:#dbe7e8;font-size:14px;line-height:1.8;overflow-wrap:anywhere;min-width:0}
+.result-section h4{font-size:16px;margin-bottom:10px;color:var(--green)}
+.result-content{color:#dbe7e8;font-size:14px;line-height:1.75;overflow-wrap:anywhere}
 .result-content h1,.result-content h2,.result-content h3{font-size:17px;letter-spacing:0;line-height:1.4;margin:18px 0 8px;color:var(--white)}
 .result-content h1:first-child,.result-content h2:first-child,.result-content h3:first-child{margin-top:0}
-.result-content p{margin:0 0 12px}
-.result-content ul,.result-content ol{padding-left:23px;margin:8px 0 15px}
-.result-content li{margin:6px 0;padding-left:3px}
+.result-content p{margin:0 0 10px}
+.result-content ul,.result-content ol{padding-left:22px;margin:7px 0 12px}
+.result-content li{margin:4px 0}
 .result-content strong{color:var(--white)}
-.result-content em{color:#d5e9e1}
-.result-content .table-wrap{width:100%;max-width:100%;overflow-x:auto;margin:15px 0 18px;border:1px solid var(--border);border-radius:11px}
-.result-content table{width:100%;min-width:360px;border-collapse:collapse;font-size:13px;text-align:left}
-.result-content th,.result-content td{padding:11px 13px;text-align:left;vertical-align:top;border-bottom:1px solid var(--border);border-right:1px solid var(--border);overflow-wrap:anywhere}
-.result-content th:last-child,.result-content td:last-child{border-right:0}
-.result-content tr:last-child td{border-bottom:0}
-.result-content th{background:rgba(169,245,207,.09);color:var(--green);font-weight:750}
-.result-content tbody tr:nth-child(even){background:rgba(255,255,255,.025)}
-.result-content blockquote{border-left:3px solid var(--green);padding:12px 15px;color:var(--muted);margin:12px 0;background:rgba(169,245,207,.045);border-radius:0 9px 9px 0}
-.result-content code{padding:2px 6px;border-radius:5px;background:rgba(255,255,255,.08);font-size:.9em;overflow-wrap:anywhere}
+.result-content table{width:100%;border-collapse:collapse;display:block;overflow-x:auto;margin:12px 0 16px;font-size:13px}
+.result-content th,.result-content td{padding:10px 12px;text-align:left;vertical-align:top;border:1px solid var(--border);min-width:110px}
+.result-content th{background:rgba(169,245,207,.08);color:var(--green)}
+.result-content blockquote{border-left:3px solid var(--green);padding-left:12px;color:var(--muted);margin:10px 0}
 .results-footer{padding:15px 25px;border-top:1px solid var(--border);color:var(--muted);font-size:12px}
+.result-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
 .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
 .price-card{background:var(--panel);border:1px solid var(--border);padding:28px;border-radius:23px;display:flex;flex-direction:column}
 .price-card.popular{border-color:var(--green);box-shadow:0 0 35px rgba(169,245,207,.06)}
@@ -135,141 +131,206 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 .footer-links{display:flex;gap:19px;flex-wrap:wrap}
 .loading-dots:after{content:"";animation:dots 1.2s steps(4,end) infinite}
 @keyframes dots{0%,20%{content:""}40%{content:"."}60%{content:".."}80%,100%{content:"..."}}
-@media(max-width:850px){.nav-links{gap:14px}.hero-grid,.upload-layout{grid-template-columns:1fr;gap:35px}.hero{padding-top:65px}.features,.pricing-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}}
-@media(max-width:540px){.container{width:91%}.nav-inner{min-height:67px}.brand{font-size:20px}.logo{width:35px;height:35px}.currency{padding:8px 6px;max-width:83px;font-size:12px}.nav-links{gap:8px}.nav-links .btn{padding:10px 12px;font-size:12px}h1{letter-spacing:-2px}.hero{padding:57px 0}section{padding:60px 0}.features,.pricing-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.preview,.upload-card{padding:20px}.cta-panel{padding:35px 19px}.results-header{padding:20px;flex-direction:column}.results-body{padding:15px}.result-section{padding:16px}.results-footer{padding:14px 20px}}
+@media(max-width:850px){.nav-links{gap:14px}.nav-links a:not(.btn){display:none}.hero-grid,.upload-layout{grid-template-columns:1fr;gap:35px}.hero{padding-top:65px}.features,.pricing-grid{grid-template-columns:1fr 1fr}.price-card:last-child{grid-column:1/-1}}
+@media(max-width:540px){.container{width:91%}.nav-inner{min-height:67px}.brand{font-size:20px;gap:8px}.brand-logo{width:35px;height:35px}.currency{padding:8px 6px;max-width:83px;font-size:12px}.nav-links{gap:8px}.nav-links .btn{padding:10px 12px;font-size:12px}h1{letter-spacing:-2px}.hero{padding:57px 0}section{padding:60px 0}.features,.pricing-grid{grid-template-columns:1fr}.price-card:last-child{grid-column:auto}.preview,.upload-card{padding:20px}.cta-panel{padding:35px 19px}.results-header{padding:20px;flex-direction:column}.results-body{padding:20px}.results-footer{padding:14px 20px}}
 </style>
 </head>
 <body>
 <header class="navbar">
-<div class="container nav-inner">
-<a href="#top" class="brand" aria-label="MedSave home"><img src="logo.png" alt="MedSave logo" class="brand-logo">Med<span>Save</span></a>
-<nav class="nav-links" aria-label="Main navigation">
-<a href="#features">Features</a><a href="#analyze">Analyze</a><a href="#pricing">Pricing</a>
-<select class="currency" id="currency" aria-label="Choose currency">
-<option value="AED">AED د.إ</option><option value="USD">USD $</option><option value="INR">INR ₹</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option><option value="SAR">SAR ر.س</option>
-</select>
-<a href="#analyze" class="btn btn-primary">Get started ↗</a>
-</nav>
-</div>
+  <div class="container nav-inner">
+    <a href="#top" class="brand" aria-label="MedSave home">
+      <img src="logo.png" alt="MedSave logo" class="brand-logo">
+      Med<span>Save</span>
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="#features">Features</a>
+      <a href="#analyze">Analyze</a>
+      <a href="#pricing">Pricing</a>
+      <select class="currency" id="currency" aria-label="Choose currency">
+        <option value="AED">AED د.إ</option>
+        <option value="USD">USD $</option>
+        <option value="INR">INR ₹</option>
+        <option value="EUR">EUR €</option>
+        <option value="GBP">GBP £</option>
+        <option value="SAR">SAR ر.س</option>
+      </select>
+      <a href="#analyze" class="btn btn-primary">Get started ↗</a>
+    </nav>
+  </div>
 </header>
 
 <main id="top">
 <section class="hero">
-<div class="container hero-grid">
-<div>
-<div class="eyebrow">✳ Smarter healthcare spending</div>
-<h1>Understand your bills. <span>Keep more control.</span></h1>
-<p class="hero-copy">Medical bills can be confusing. MedSave helps you review charges, understand medical terminology, and prepare better questions for your healthcare provider.</p>
-<div class="hero-actions"><a class="btn btn-primary" href="#analyze">Review a bill ↗</a><a class="btn btn-outline" href="#features">Explore features</a></div>
-<p class="trust-note">Clear explanations. Better questions. More informed decisions.</p>
-</div>
-<div class="preview">
-<div class="preview-top"><div><div class="preview-label">ILLUSTRATIVE BILL PREVIEW</div><h3>Medical expense summary</h3></div><span class="status">Example</span></div>
-<div class="preview-label">Total amount billed</div><div class="bill-amount"><span data-money="1250">AED 1,250</span></div>
-<div class="line-item"><span class="sub">Consultation</span><span data-money="250">AED 250</span></div>
-<div class="line-item"><span class="sub">Laboratory services</span><span data-money="400">AED 400</span></div>
-<div class="line-item"><span class="sub">Imaging services</span><span data-money="600">AED 600</span></div>
-<div class="preview-note"><strong>What can MedSave help with?</strong><br>Understand line items, identify charges worth clarifying, and prepare questions about your statement.</div>
-</div>
-</div>
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">✳ Smarter healthcare spending</div>
+      <h1>Understand your bills. <span>Keep more control.</span></h1>
+      <p class="hero-copy">Medical bills can be confusing. MedSave helps you review charges, understand medical terminology, and prepare better questions for your healthcare provider.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#analyze">Review a bill ↗</a>
+        <a class="btn btn-outline" href="#features">Explore features</a>
+      </div>
+      <p class="trust-note">Clear explanations. Better questions. More informed decisions.</p>
+    </div>
+    <div class="preview">
+      <div class="preview-top">
+        <div>
+          <div class="preview-label">ILLUSTRATIVE BILL PREVIEW</div>
+          <h3>Medical expense summary</h3>
+        </div>
+        <span class="status">Example</span>
+      </div>
+      <div class="preview-label">Total amount billed</div>
+      <div class="bill-amount"><span data-money="1250">AED 1,250</span></div>
+      <div class="line-item"><span class="sub">Consultation</span><span data-money="250">AED 250</span></div>
+      <div class="line-item"><span class="sub">Laboratory services</span><span data-money="400">AED 400</span></div>
+      <div class="line-item"><span class="sub">Imaging services</span><span data-money="600">AED 600</span></div>
+      <div class="preview-note"><strong>What can MedSave help with?</strong><br>Understand line items, identify charges worth clarifying, and prepare questions about your statement.</div>
+    </div>
+  </div>
 </section>
 
 <section id="features">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Built around your needs</div><h2>Medical bills, made easier to understand.</h2><p>Get useful explanations without needing to understand every billing code yourself.</p></div>
-<div class="features">
-<article class="feature"><div class="feature-icon">🔎</div><h3>Charge review</h3><p>Review itemized charges and highlight entries that may deserve a closer look, such as possible duplicates.</p></article>
-<article class="feature"><div class="feature-icon">🧾</div><h3>Plain-language explanations</h3><p>Understand unfamiliar billing terms, service descriptions, and the difference between billed and paid amounts.</p></article>
-<article class="feature"><div class="feature-icon">💬</div><h3>Questions to ask</h3><p>Prepare specific questions for your provider or insurer when a charge, code, or claim decision is unclear.</p></article>
-<article class="feature"><div class="feature-icon">📊</div><h3>Expense breakdown</h3><p>Organize the information shown on a statement so you can see where the total cost comes from.</p></article>
-<article class="feature"><div class="feature-icon">🌍</div><h3>Flexible currencies</h3><p>Display example amounts and subscription prices in supported currencies using exchange-rate estimates. Actual bill charges remain unchanged.</p></article>
-<article class="feature"><div class="feature-icon">🛡️</div><h3>Privacy-conscious design</h3><p>Files are processed by the backend for analysis. Review the privacy and retention safeguards before uploading sensitive records.</p></article>
-</div>
-</div>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Built around your needs</div>
+      <h2>Medical bills, made easier to understand.</h2>
+      <p>Get useful explanations without needing to understand every billing code yourself.</p>
+    </div>
+    <div class="features">
+      <article class="feature"><div class="feature-icon">🔎</div><h3>Charge review</h3><p>Review itemized charges and highlight entries that may deserve a closer look, such as possible duplicates.</p></article>
+      <article class="feature"><div class="feature-icon">🧾</div><h3>Plain-language explanations</h3><p>Understand unfamiliar billing terms, service descriptions, and the difference between billed and paid amounts.</p></article>
+      <article class="feature"><div class="feature-icon">💬</div><h3>Questions to ask</h3><p>Prepare specific questions for your provider or insurer when a charge, code, or claim decision is unclear.</p></article>
+      <article class="feature"><div class="feature-icon">📊</div><h3>Expense breakdown</h3><p>Organize the information shown on a statement so you can see where the total cost comes from.</p></article>
+      <article class="feature"><div class="feature-icon">🌍</div><h3>Flexible currencies</h3><p>Display example amounts and subscription prices in supported currencies. Currency display does not convert actual charges.</p></article>
+      <article class="feature"><div class="feature-icon">🛡️</div><h3>Privacy-conscious design</h3><p>Files are processed by the backend for analysis. Review the privacy and retention safeguards before uploading sensitive records.</p></article>
+    </div>
+  </div>
 </section>
 
 <section class="upload-section" id="analyze">
-<div class="container upload-layout">
-<div class="upload-info">
-<div class="eyebrow">Your bill, explained</div>
-<h2>Start with the bill you already have.</h2>
-<p>Upload a readable medical bill and get a structured, plain-English review with charges, questions, and possible items to clarify.</p>
-<ul class="steps">
-<li><span class="step-number">1</span><span>Choose a readable medical statement.</span></li>
-<li><span class="step-number">2</span><span>Let MedSave explain each readable charge.</span></li>
-<li><span class="step-number">3</span><span>Review potential issues and questions to raise with your provider.</span></li>
-</ul>
-</div>
-<div class="upload-card">
-<h3>Review your medical bill</h3><p>PDF, JPG or PNG · Maximum 10 MB</p>
-<label class="dropzone" for="billFile"><div class="upload-icon">📄</div><strong>Choose your bill</strong><small>Click to browse your device</small><small>PDF, JPG or PNG · Maximum 10 MB</small></label>
-<input type="file" id="billFile" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
-<div id="fileName" class="file-name" aria-live="polite"></div>
-<button id="analyzeBtn" class="btn btn-primary" style="width:100%;margin-top:17px">Analyze my bill ↗</button>
-<div id="uploadNotice" class="notice" role="status" aria-live="polite"></div>
-<div class="privacy"><strong>Privacy reminder.</strong> Medical bills can contain sensitive information. This version sends the selected file to the MedSave backend and Gemini for processing. Use a fictional sample while testing; do not upload real records until privacy, retention, and security controls have been reviewed.</div>
-</div>
-</div>
+  <div class="container upload-layout">
+    <div class="upload-info">
+      <div class="eyebrow">Your bill, explained</div>
+      <h2>Start with the bill you already have.</h2>
+      <p>Upload a readable medical bill and get a structured, plain-English review with charges, questions, and possible items to clarify.</p>
+      <ul class="steps">
+        <li><span class="step-number">1</span><span>Choose a readable medical statement.</span></li>
+        <li><span class="step-number">2</span><span>Let MedSave explain each readable charge.</span></li>
+        <li><span class="step-number">3</span><span>Review potential issues and questions to raise with your provider.</span></li>
+      </ul>
+    </div>
 
-<div class="container">
-<section class="results-shell" id="results" aria-live="polite">
-<div class="results-header">
-<div><div class="eyebrow" style="margin-bottom:9px">Your MedSave report</div><h3>Medical bill review</h3><p id="resultsSubtitle">A plain-English explanation of your uploaded document.</p></div>
-<span class="result-badge">AI-assisted review</span>
-</div>
-<div class="results-body" id="resultsBody"></div>
-<div class="results-footer">Informational review only. Ask your provider or insurer to confirm disputed charges. AI can misread documents.</div>
-</section>
-</div>
+    <div class="upload-card">
+      <h3>Review your medical bill</h3>
+      <p>PDF, JPG or PNG · Maximum 10 MB</p>
+      <label class="dropzone" for="billFile">
+        <div class="upload-icon">📄</div>
+        <strong>Choose your bill</strong>
+        <small>Click to browse your device</small>
+        <small>PDF, JPG or PNG · Maximum 10 MB</small>
+      </label>
+      <input type="file" id="billFile" accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png">
+      <div id="fileName" class="file-name" aria-live="polite"></div>
+      <button id="analyzeBtn" class="btn btn-primary" style="width:100%;margin-top:17px">Analyze my bill ↗</button>
+      <div id="uploadNotice" class="notice" role="status" aria-live="polite"></div>
+      <div class="privacy"><strong>Privacy reminder.</strong> Medical bills can contain sensitive information. This version sends the selected file to the MedSave backend and Gemini for processing. Use a fictional sample while testing; do not upload real records until privacy, retention, and security controls have been reviewed.</div>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="results-shell" id="results" aria-live="polite">
+      <div class="results-header">
+        <div>
+          <div class="eyebrow" style="margin-bottom:9px">Your MedSave report</div>
+          <h3>Medical bill review</h3>
+          <p id="resultsSubtitle">A plain-English explanation of your uploaded document.</p>
+        </div>
+        <span class="result-badge">AI-assisted review</span>
+      </div>
+      <div class="results-body" id="resultsBody"></div>
+      <div class="results-footer">Informational review only. Ask your provider or insurer to confirm disputed charges. AI can misread documents.</div>
+    </section>
+  </div>
 </section>
 
 <section id="pricing">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Simple pricing</div><h2>Choose the level that works for you.</h2><p>Proposed launch pricing. Payments and subscription entitlements are not active yet.</p></div>
-<div class="pricing-grid">
-<article class="price-card"><div class="plan-label">Free</div><div class="price"><span data-money="0">AED 0</span></div><p class="price-description">Explore the service before committing.</p><ul class="plan-list"><li>Basic billing education</li><li>Guidance on reviewing statements</li><li>Access to FAQs and resources</li></ul><a href="#analyze" class="btn btn-outline">Get started</a></article>
-<article class="price-card popular"><div class="plan-label">Plus · Most popular</div><div class="price"><span data-money="19">AED 19</span><small> / month</small></div><p class="price-description">For people who want more help understanding bills.</p><ul class="plan-list"><li>AI-assisted bill explanations</li><li>Charge-by-charge review</li><li>Questions to ask your provider</li></ul><a href="#analyze" class="btn btn-primary">Try bill review</a></article>
-<article class="price-card"><div class="plan-label">Family</div><div class="price"><span data-money="39">AED 39</span><small> / month</small></div><p class="price-description">A proposed option for household billing support.</p><ul class="plan-list"><li>Features planned for Plus</li><li>Household-oriented guidance</li><li>Subscription not active yet</li></ul><a href="#analyze" class="btn btn-outline">Explore</a></article>
-</div>
-<p class="pricing-disclaimer">Prices are based on AED amounts and converted using exchange-rate estimates. Rates can fluctuate, and displayed values are estimates. Checkout is not active.</p>
-</div>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Simple pricing</div>
+      <h2>Choose the level that works for you.</h2>
+      <p>Proposed launch pricing. Payments and subscription entitlements are not active yet.</p>
+    </div>
+    <div class="pricing-grid">
+      <article class="price-card">
+        <div class="plan-label">Free</div>
+        <div class="price"><span data-money="0">AED 0</span></div>
+        <p class="price-description">Explore the service before committing.</p>
+        <ul class="plan-list"><li>Basic billing education</li><li>Guidance on reviewing statements</li><li>Access to FAQs and resources</li></ul>
+        <a href="#analyze" class="btn btn-outline">Get started</a>
+      </article>
+      <article class="price-card popular">
+        <div class="plan-label">Plus · Most popular</div>
+        <div class="price"><span data-money="19">AED 19</span><small> / month</small></div>
+        <p class="price-description">For people who want more help understanding bills.</p>
+        <ul class="plan-list"><li>AI-assisted bill explanations</li><li>Charge-by-charge review</li><li>Questions to ask your provider</li></ul>
+        <a href="#analyze" class="btn btn-primary">Try bill review</a>
+      </article>
+      <article class="price-card">
+        <div class="plan-label">Family</div>
+        <div class="price"><span data-money="39">AED 39</span><small> / month</small></div>
+        <p class="price-description">A proposed option for household billing support.</p>
+        <ul class="plan-list"><li>Features planned for Plus</li><li>Household-oriented guidance</li><li>Subscription not active yet</li></ul>
+        <a href="#analyze" class="btn btn-outline">Explore</a>
+      </article>
+    </div>
+    <p class="pricing-disclaimer">Prices are illustrative and shown in the selected currency; switching currency changes display only and does not perform exchange-rate conversion. Checkout is not active.</p>
+  </div>
 </section>
 
 <section id="faq">
-<div class="container">
-<div class="section-head"><div class="eyebrow">Frequently asked questions</div><h2>Clear answers before you begin.</h2></div>
-<div class="faq-list">
-<article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave prove a bill is wrong?<span>＋</span></button><div class="faq-answer">No. MedSave can point out possible inconsistencies or unclear charges, but only the provider or insurer can confirm what a charge means and whether a correction is appropriate.</div></article>
-<article class="faq-item"><button class="faq-question" aria-expanded="false">What file types can I upload?<span>＋</span></button><div class="faq-answer">This version accepts PDF, JPG, and PNG files up to 10 MB. Image quality, document layout, and scanned text can affect the analysis.</div></article>
-<article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave convert currencies?<span>＋</span></button><div class="faq-answer">Yes. The selector converts illustrative amounts and proposed subscription prices from AED using exchange-rate estimates. It does not alter the amounts printed on your uploaded bill.</div></article>
-<article class="faq-item"><button class="faq-question" aria-expanded="false">Is my bill stored?<span>＋</span></button><div class="faq-answer">This starter implementation processes the upload in server memory and does not intentionally save the file to disk. That alone is not a complete privacy guarantee: hosting providers, AI processing terms, logs, and retention settings must be reviewed before real medical records are used.</div></article>
-<article class="faq-item"><button class="faq-question" aria-expanded="false">Is the subscription checkout active?<span>＋</span></button><div class="faq-answer">No. The displayed plans are proposed pricing only. Payment processing and subscription access are not implemented.</div></article>
-</div>
-</div>
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Frequently asked questions</div>
+      <h2>Clear answers before you begin.</h2>
+    </div>
+    <div class="faq-list">
+      <article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave prove a bill is wrong?<span>＋</span></button><div class="faq-answer">No. MedSave can point out possible inconsistencies or unclear charges, but only the provider or insurer can confirm what a charge means and whether a correction is appropriate.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false">What file types can I upload?<span>＋</span></button><div class="faq-answer">This version accepts PDF, JPG, and PNG files up to 10 MB. Image quality, document layout, and scanned text can affect the analysis.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false">Does MedSave convert currencies?<span>＋</span></button><div class="faq-answer">No. The currency selector changes the display of example amounts and proposed subscription prices. It does not convert the amounts printed on your bill.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false">Is my bill stored?<span>＋</span></button><div class="faq-answer">This starter implementation processes the upload in server memory and does not intentionally save the file to disk. That alone is not a complete privacy guarantee: hosting providers, AI processing terms, logs, and retention settings must be reviewed before real medical records are used.</div></article>
+      <article class="faq-item"><button class="faq-question" aria-expanded="false">Is the subscription checkout active?<span>＋</span></button><div class="faq-answer">No. The displayed plans are proposed pricing only. Payment processing and subscription access are not implemented.</div></article>
+    </div>
+  </div>
 </section>
 
 <section class="cta">
-<div class="container"><div class="cta-panel"><div class="eyebrow">Take control of the details</div><h2>Understand the bill before you question it.</h2><p>Start with better information and more confident questions.</p><a class="btn btn-primary" href="#analyze">Explore bill review ↗</a></div></div>
+  <div class="container">
+    <div class="cta-panel">
+      <div class="eyebrow">Take control of the details</div>
+      <h2>Understand the bill before you question it.</h2>
+      <p>Start with better information and more confident questions.</p>
+      <a class="btn btn-primary" href="#analyze">Explore bill review ↗</a>
+    </div>
+  </div>
 </section>
 </main>
 
 <footer>
-<div class="container footer-inner">
-<a href="#top" class="brand" style="font-size:18px"><span class="logo" style="width:31px;height:31px;border-radius:9px;font-size:19px">M</span>Med<span>Save</span></a>
-<span>© <span id="year"></span> MedSave. All rights reserved.</span>
-<div class="footer-links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQs</a></div>
-</div>
+  <div class="container footer-inner">
+    <a href="#top" class="brand" style="font-size:18px">
+      <img src="logo.png" alt="MedSave logo" class="brand-logo" style="width:31px;height:31px">
+      Med<span>Save</span>
+    </a>
+    <span>© <span id="year"></span> MedSave. All rights reserved.</span>
+    <div class="footer-links"><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQs</a></div>
+  </div>
 </footer>
 
 <script>
-"use strict";
-
 const API_URL = "https://medsave-api.onrender.com/api/analyze";
 
-/* ---------------- CURRENCY CONVERSION ---------------- */
-
 const currencySelect = document.getElementById("currency");
-
 const currencyLocales = {
   AED: "en-AE",
   USD: "en-US",
@@ -279,100 +340,38 @@ const currencyLocales = {
   SAR: "en-SA"
 };
 
-// Fallback rates: units of target currency for 1 AED.
-let currencyRates = {
-  AED: 1,
-  USD: 0.272294,
-  INR: 26.3093,
-  EUR: 0.242807,
-  GBP: 0.205894,
-  SAR: 1.02231
-};
-
-function formatMoney(amountAED) {
+function formatMoney(amount) {
   const currency = currencySelect.value;
-  const amount = Number(amountAED);
-
-  if (!Number.isFinite(amount)) {
-    return String(amountAED);
-  }
-
-  const rate = currencyRates[currency] ?? 1;
-  const convertedAmount = amount * rate;
-
-  return new Intl.NumberFormat(
-    currencyLocales[currency] || "en",
-    {
+  try {
+    return new Intl.NumberFormat(currencyLocales[currency], {
       style: "currency",
       currency,
       maximumFractionDigits: 2
-    }
-  ).format(convertedAmount);
-}
-
-function updateCurrency() {
-  document.querySelectorAll("[data-money]").forEach(element => {
-    // Always convert from the original AED amount stored in HTML.
-    element.textContent = formatMoney(element.dataset.money);
-  });
-}
-
-// This function is registered once. Changing the dropdown updates prices.
-currencySelect.addEventListener("change", updateCurrency);
-
-// Display fallback conversions immediately, even if the rates API is unavailable.
-updateCurrency();
-
-async function loadCurrencyRates() {
-  try {
-    const response = await fetch(
-      "https://open.er-api.com/v6/latest/AED"
-    );
-
-    if (!response.ok) {
-      throw new Error("Exchange-rate request failed");
-    }
-
-    const data = await response.json();
-
-    if (data.result !== "success" || !data.rates) {
-      throw new Error("Exchange rates unavailable");
-    }
-
-    Object.keys(currencyLocales).forEach(currency => {
-      const rate = Number(data.rates[currency]);
-
-      if (Number.isFinite(rate) && rate > 0) {
-        currencyRates[currency] = rate;
-      }
-    });
-
-    updateCurrency();
-  } catch (error) {
-    console.warn("Using fallback exchange rates:", error);
-    // The fallback rates still let the currency selector work.
-    updateCurrency();
+    }).format(Number(amount));
+  } catch {
+    return `${currency} ${amount}`;
   }
 }
 
-loadCurrencyRates();
+function updateCurrency() {
+  document.querySelectorAll("[data-money]").forEach(el => {
+    el.textContent = formatMoney(el.dataset.money);
+  });
+}
 
-/* ---------------- GENERAL WEBSITE ---------------- */
+currencySelect.addEventListener("change", updateCurrency);
+updateCurrency();
 
-document.getElementById("year").textContent =
-  new Date().getFullYear();
+document.getElementById("year").textContent = new Date().getFullYear();
 
 document.querySelectorAll(".faq-question").forEach(button => {
   button.addEventListener("click", () => {
     const item = button.closest(".faq-item");
     const open = !item.classList.contains("open");
-
     item.classList.toggle("open", open);
     button.setAttribute("aria-expanded", String(open));
   });
 });
-
-/* ---------------- BILL UPLOAD AND ANALYSIS ---------------- */
 
 const fileInput = document.getElementById("billFile");
 const fileName = document.getElementById("fileName");
@@ -381,13 +380,6 @@ const uploadNotice = document.getElementById("uploadNotice");
 const results = document.getElementById("results");
 const resultsBody = document.getElementById("resultsBody");
 const resultsSubtitle = document.getElementById("resultsSubtitle");
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const ALLOWED_TYPES = [
-  "application/pdf",
-  "image/jpeg",
-  "image/png"
-];
 
 function showNotice(message, isError = false) {
   uploadNotice.textContent = message;
@@ -406,20 +398,19 @@ fileInput.addEventListener("change", () => {
     return;
   }
 
-  if (!ALLOWED_TYPES.includes(file.type)) {
+  const allowed = ["application/pdf", "image/jpeg", "image/png"];
+
+  if (!allowed.includes(file.type)) {
     fileInput.value = "";
     fileName.textContent = "";
     showNotice("Please select a PDF, JPG, or PNG file.", true);
     return;
   }
 
-  if (file.size > MAX_FILE_SIZE) {
+  if (file.size > 10 * 1024 * 1024) {
     fileInput.value = "";
     fileName.textContent = "";
-    showNotice(
-      "Your file exceeds 10 MB. Please choose a smaller document.",
-      true
-    );
+    showNotice("Your file exceeds 10 MB. Please choose a smaller document.", true);
     return;
   }
 
@@ -427,96 +418,64 @@ fileInput.addEventListener("change", () => {
     `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
 });
 
-/* Escape text before turning the supported Markdown into HTML. */
 function escapeHtml(value) {
-  return String(value).replace(/[&<>"']/g, char => ({
+  return value.replace(/[&<>"']/g, char => ({
     "&": "&amp;",
     "<": "&lt;",
     ">": "&gt;",
     '"': "&quot;",
     "'": "&#39;"
-  })[char]);
+  }[char]));
 }
 
 function markdownToHtml(markdown) {
-  const lines = String(markdown || "")
-    .replace(/\r/g, "")
-    .split("\n");
-
+  const lines = escapeHtml(String(markdown || "").replace(/\r/g, "")).split("\n");
   let html = "";
   let paragraph = [];
   let listType = null;
   let tableRows = [];
 
-  function inlineMarkdown(value) {
-    return escapeHtml(value)
-      .replace(/`([^`]+)`/g, "<code>$1</code>")
-      .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-      .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>");
-  }
-
-  function flushParagraph() {
+  const flushParagraph = () => {
     if (paragraph.length) {
       html += `<p>${paragraph.join(" ")}</p>`;
       paragraph = [];
     }
-  }
+  };
 
-  function flushList() {
+  const flushList = () => {
     if (listType) {
       html += `</${listType}>`;
       listType = null;
     }
-  }
+  };
 
-  function isTableSeparator(line) {
-    return /^\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?$/.test(line);
-  }
+  const flushTable = () => {
+    if (tableRows.length) {
+      const rows = tableRows.filter(row => !/^\s*\|?\s*:?-{3,}/.test(row));
 
-  function getCells(line) {
-    return line.trim()
-      .replace(/^\|/, "")
-      .replace(/\|$/, "")
-      .split("|")
-      .map(cell => cell.trim());
-  }
+      if (rows.length) {
+        html += "<table>";
+        rows.forEach((row, index) => {
+          const cells = row.trim()
+            .replace(/^\|/, "")
+            .replace(/\|$/, "")
+            .split("|")
+            .map(cell => cell.trim());
 
-  function flushTable() {
-    if (!tableRows.length) return;
-
-    if (tableRows.length >= 2 && isTableSeparator(tableRows[1])) {
-      const headers = getCells(tableRows[0]);
-      const rows = tableRows.slice(2)
-        .filter(row => !isTableSeparator(row));
-
-      html += '<div class="table-wrap"><table><thead><tr>';
-
-      headers.forEach(cell => {
-        html += `<th scope="col">${inlineMarkdown(cell)}</th>`;
-      });
-
-      html += "</tr></thead><tbody>";
-
-      rows.forEach(row => {
-        const cells = getCells(row);
-        html += "<tr>";
-
-        headers.forEach((_, index) => {
-          html += `<td>${inlineMarkdown(cells[index] || "—")}</td>`;
+          html += `<tr>${cells.map(cell =>
+            `<${index === 0 ? "th" : "td"}>${inlineMarkdown(cell)}</${index === 0 ? "th" : "td"}>`
+          ).join("")}</tr>`;
         });
+        html += "</table>";
+      }
 
-        html += "</tr>";
-      });
-
-      html += "</tbody></table></div>";
-    } else {
-      tableRows.forEach(row => {
-        html += `<p>${inlineMarkdown(row)}</p>`;
-      });
+      tableRows = [];
     }
+  };
 
-    tableRows = [];
-  }
+  const inlineMarkdown = text => text
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
 
   for (const raw of lines) {
     const line = raw.trim();
@@ -528,10 +487,7 @@ function markdownToHtml(markdown) {
       continue;
     }
 
-    const looksLikeTable =
-      line.includes("|") && line.split("|").length >= 3;
-
-    if (looksLikeTable) {
+    if (line.includes("|") && line.split("|").length >= 3) {
       flushParagraph();
       flushList();
       tableRows.push(line);
@@ -545,19 +501,17 @@ function markdownToHtml(markdown) {
     if (heading) {
       flushParagraph();
       flushList();
-
       const level = heading[1].length;
       html += `<h${level}>${inlineMarkdown(heading[2])}</h${level}>`;
       continue;
     }
 
-    const unordered = line.match(/^[-*]\s+(.+)/);
+    const list = line.match(/^[-*]\s+(.+)/);
     const ordered = line.match(/^\d+[.)]\s+(.+)/);
 
-    if (unordered || ordered) {
+    if (list || ordered) {
       flushParagraph();
-
-      const nextType = unordered ? "ul" : "ol";
+      const nextType = list ? "ul" : "ol";
 
       if (listType !== nextType) {
         flushList();
@@ -565,7 +519,7 @@ function markdownToHtml(markdown) {
         html += `<${listType}>`;
       }
 
-      html += `<li>${inlineMarkdown((unordered || ordered)[1])}</li>`;
+      html += `<li>${inlineMarkdown((list || ordered)[1])}</li>`;
       continue;
     }
 
@@ -587,33 +541,22 @@ function markdownToHtml(markdown) {
   return html || "<p>No review text was returned.</p>";
 }
 
-/* Split the AI response into readable cards based on Markdown headings. */
 function renderReview(markdown) {
-  const text = String(markdown || "");
-
-  const chunks = text
+  const chunks = String(markdown || "")
     .split(/(?=^#{1,2}\s+)/m)
     .filter(chunk => chunk.trim());
 
-  resultsBody.replaceChildren();
+  resultsBody.innerHTML = "";
 
   if (!chunks.length) {
-    const section = document.createElement("section");
-    section.className = "result-section";
-
-    const content = document.createElement("div");
-    content.className = "result-content";
-    content.innerHTML = markdownToHtml(text);
-
-    section.appendChild(content);
-    resultsBody.appendChild(section);
+    resultsBody.innerHTML =
+      `<div class="result-content">${markdownToHtml(markdown)}</div>`;
     return;
   }
 
   chunks.forEach(chunk => {
-    const firstLine = chunk.split("\n")[0].trim();
-    const title = firstLine.replace(/^#{1,2}\s*/, "") || "Bill review";
-    const body = chunk.replace(/^#{1,2}\s+[^\n]+\n?/, "");
+    const first = chunk.split("\n")[0].trim();
+    const title = first.replace(/^#{1,2}\s*/, "") || "Bill review";
 
     const section = document.createElement("section");
     section.className = "result-section";
@@ -623,7 +566,9 @@ function renderReview(markdown) {
 
     const content = document.createElement("div");
     content.className = "result-content";
-    content.innerHTML = markdownToHtml(body);
+    content.innerHTML = markdownToHtml(
+      chunk.replace(/^#{1,2}\s+[^\n]+\n?/, "")
+    );
 
     section.append(heading, content);
     resultsBody.appendChild(section);
@@ -639,26 +584,21 @@ analyzeBtn.addEventListener("click", async () => {
     return;
   }
 
-  if (!ALLOWED_TYPES.includes(file.type)) {
+  if (!["application/pdf", "image/jpeg", "image/png"].includes(file.type)) {
     showNotice("Please choose a PDF, JPG, or PNG file.", true);
     return;
   }
 
-  if (file.size > MAX_FILE_SIZE) {
+  if (file.size > 10 * 1024 * 1024) {
     showNotice("Your file exceeds the 10 MB limit.", true);
     return;
   }
 
   const oldText = analyzeBtn.textContent;
-
   analyzeBtn.disabled = true;
-  analyzeBtn.innerHTML =
-    '<span class="loading-dots">Analyzing your bill</span>';
+  analyzeBtn.innerHTML = '<span class="loading-dots">Analyzing your bill</span>';
 
-  showNotice(
-    "Sending the document for analysis. This may take a little while if the server is waking up."
-  );
-
+  showNotice("Sending the document for analysis. This may take a little while if the server is waking up.");
   results.style.display = "none";
 
   try {
@@ -679,9 +619,7 @@ analyzeBtn.addEventListener("click", async () => {
     }
 
     if (!response.ok) {
-      throw new Error(
-        data.error || "Analysis failed. Please try again."
-      );
+      throw new Error(data.error || "Analysis failed. Please try again.");
     }
 
     if (!data.review) {
@@ -695,26 +633,23 @@ analyzeBtn.addEventListener("click", async () => {
 
     results.style.display = "block";
 
-    showNotice(
-      "Review ready. Please verify important details against your original document."
-    );
+    showNotice("Review ready. Please verify important details against your original document.");
+    results.scrollIntoView({ behavior: "smooth", block: "start" });
 
-    results.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
   } catch (error) {
     console.error("MedSave request failed:", error);
+    showNotice(error.message || "We couldn't analyze the document. Please try again.", true);
 
-    showNotice(
-      error.message ||
-      "We couldn't analyze the document. Please try again.",
-      true
-    );
   } finally {
     analyzeBtn.disabled = false;
     analyzeBtn.textContent = oldText;
   }
+});
+
+document.querySelectorAll(".plan-btn").forEach(button => {
+  button.addEventListener("click", () => {
+    showNotice(`${button.dataset.plan} plan selected. Subscription checkout is not active yet.`);
+  });
 });
 </script>
 </body>
