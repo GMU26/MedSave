@@ -11,22 +11,15 @@
 
 <style>
 :root {
-  --bg:#071b27;
-  --panel:#0d2633;
-  --panel2:#12313e;
-  --green:#a9f5cf;
-  --green2:#66d9a4;
-  --white:#f4faf8;
-  --muted:#a1b5bc;
-  --border:rgba(255,255,255,.11);
-  --red:#ffb8b8;
-  --radius:22px;
+  --bg:#071b27; --panel:#0d2633; --panel2:#12313e;
+  --green:#a9f5cf; --green2:#66d9a4; --white:#f4faf8;
+  --muted:#a1b5bc; --border:rgba(255,255,255,.11);
+  --red:#ffb8b8; --radius:22px;
 }
 * { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; scroll-padding-top:90px; }
 body {
-  background:var(--bg);
-  color:var(--white);
+  background:var(--bg); color:var(--white);
   font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
   line-height:1.6;
 }
@@ -36,8 +29,7 @@ button { cursor:pointer; }
 .container { width:min(1160px,90%); margin:auto; }
 .navbar {
   position:sticky; top:0; z-index:10;
-  background:rgba(7,27,39,.94);
-  backdrop-filter:blur(18px);
+  background:rgba(7,27,39,.94); backdrop-filter:blur(18px);
   border-bottom:1px solid var(--border);
 }
 .nav-inner {
@@ -46,28 +38,19 @@ button { cursor:pointer; }
 }
 .brand {
   display:flex; align-items:center; gap:10px;
-  font-size:23px; font-weight:800; letter-spacing:-.8px;
-  flex-shrink:0;
+  font-size:23px; font-weight:800; letter-spacing:-.8px; flex-shrink:0;
 }
 .brand span:last-child { color:var(--green); }
-.brand-logo {
-  width:40px; height:40px; object-fit:contain;
-  display:block; flex-shrink:0;
-}
-.nav-links {
-  display:flex; align-items:center; gap:22px;
-  color:var(--muted); font-size:14px;
-}
+.brand-logo { width:40px; height:40px; object-fit:contain; display:block; flex-shrink:0; }
+.nav-links { display:flex; align-items:center; gap:22px; color:var(--muted); font-size:14px; }
 .nav-links a:hover { color:var(--green); }
 .currency {
   background:var(--panel); color:var(--white);
-  border:1px solid var(--border);
-  padding:9px 10px; border-radius:10px; max-width:105px;
+  border:1px solid var(--border); padding:9px 10px; border-radius:10px; max-width:105px;
 }
 .btn {
-  border:0; border-radius:12px; padding:13px 20px;
-  font-weight:750; display:inline-flex; align-items:center;
-  justify-content:center; gap:8px;
+  border:0; border-radius:12px; padding:13px 20px; font-weight:750;
+  display:inline-flex; align-items:center; justify-content:center; gap:8px;
   transition:transform .2s,background .2s;
 }
 .btn:hover { transform:translateY(-2px); }
@@ -87,39 +70,29 @@ button { cursor:pointer; }
   align-items:center; gap:60px; position:relative;
 }
 .eyebrow {
-  display:inline-flex; align-items:center; gap:9px;
-  padding:7px 12px; border:1px solid rgba(169,245,207,.24);
-  background:rgba(169,245,207,.06); border-radius:30px;
-  color:var(--green); font-size:12px; font-weight:750;
+  display:inline-flex; align-items:center; gap:9px; padding:7px 12px;
+  border:1px solid rgba(169,245,207,.24); background:rgba(169,245,207,.06);
+  border-radius:30px; color:var(--green); font-size:12px; font-weight:750;
   letter-spacing:.6px; text-transform:uppercase; margin-bottom:20px;
 }
-h1 {
-  font-size:clamp(42px,5.5vw,70px); line-height:1.07;
-  letter-spacing:-3px; margin-bottom:23px;
-}
+h1 { font-size:clamp(42px,5.5vw,70px); line-height:1.07; letter-spacing:-3px; margin-bottom:23px; }
 h1 span { color:var(--green); }
 .hero-copy { max-width:540px; color:var(--muted); font-size:17px; margin-bottom:28px; }
 .hero-actions { display:flex; flex-wrap:wrap; gap:12px; }
 .trust-note { margin-top:20px; color:var(--muted); font-size:12px; }
 .preview {
   padding:26px; border:1px solid var(--border); border-radius:26px;
-  background:linear-gradient(145deg,#12303d,#0b202c);
-  box-shadow:0 35px 90px rgba(0,0,0,.22);
+  background:linear-gradient(145deg,#12303d,#0b202c); box-shadow:0 35px 90px rgba(0,0,0,.22);
 }
 .preview-top { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:25px; }
 .preview-label { color:var(--muted); font-size:12px; }
 .preview h3 { font-size:17px; margin-top:3px; }
 .status {
-  font-size:11px; color:var(--green);
-  border:1px solid rgba(169,245,207,.2);
-  background:rgba(169,245,207,.07);
-  padding:6px 9px; border-radius:20px;
+  font-size:11px; color:var(--green); border:1px solid rgba(169,245,207,.2);
+  background:rgba(169,245,207,.07); padding:6px 9px; border-radius:20px;
 }
 .bill-amount { font-size:38px; font-weight:800; letter-spacing:-1px; margin:6px 0 17px; }
-.line-item {
-  display:flex; justify-content:space-between; gap:12px;
-  border-top:1px solid var(--border); padding:13px 0; font-size:13px;
-}
+.line-item { display:flex; justify-content:space-between; gap:12px; border-top:1px solid var(--border); padding:13px 0; font-size:13px; }
 .line-item span:last-child { font-weight:650; }
 .sub { color:var(--muted); }
 .preview-note {
@@ -129,55 +102,37 @@ h1 span { color:var(--green); }
 }
 section { padding:78px 0; }
 .section-head { max-width:680px; margin:0 auto 42px; text-align:center; }
-.section-head h2 {
-  font-size:clamp(30px,4vw,43px); line-height:1.15;
-  letter-spacing:-1.4px; margin-bottom:14px;
-}
+.section-head h2 { font-size:clamp(30px,4vw,43px); line-height:1.15; letter-spacing:-1.4px; margin-bottom:14px; }
 .section-head p { color:var(--muted); }
 .features { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
 .feature {
   border:1px solid var(--border); background:var(--panel);
-  border-radius:var(--radius); padding:27px;
-  transition:transform .2s,border-color .2s;
+  border-radius:var(--radius); padding:27px; transition:transform .2s,border-color .2s;
 }
 .feature:hover { transform:translateY(-4px); border-color:rgba(169,245,207,.4); }
 .feature-icon {
-  width:47px; height:47px; border-radius:15px;
-  background:rgba(169,245,207,.1); display:grid;
-  place-items:center; font-size:23px; margin-bottom:17px;
+  width:47px; height:47px; border-radius:15px; background:rgba(169,245,207,.1);
+  display:grid; place-items:center; font-size:23px; margin-bottom:17px;
 }
 .feature h3 { margin-bottom:10px; font-size:18px; }
 .feature p { color:var(--muted); font-size:14px; }
 
 .upload-section { background:#0a202c; }
-.upload-layout {
-  display:grid; grid-template-columns:.85fr 1.15fr;
-  gap:42px; align-items:start;
-}
-.upload-info h2 {
-  font-size:clamp(32px,4vw,40px); line-height:1.13;
-  letter-spacing:-1.5px; margin:13px 0 18px;
-}
+.upload-layout { display:grid; grid-template-columns:.85fr 1.15fr; gap:42px; align-items:start; }
+.upload-info h2 { font-size:clamp(32px,4vw,40px); line-height:1.13; letter-spacing:-1.5px; margin:13px 0 18px; }
 .upload-info p { color:var(--muted); margin-bottom:18px; }
 .steps { list-style:none; display:grid; gap:13px; }
 .steps li { display:flex; gap:12px; color:#d5e5e8; font-size:14px; }
 .step-number {
-  flex-shrink:0; display:grid; place-items:center;
-  width:27px; height:27px; border-radius:50%;
-  background:rgba(169,245,207,.12); color:var(--green);
-  font-size:12px; font-weight:800;
+  flex-shrink:0; display:grid; place-items:center; width:27px; height:27px;
+  border-radius:50%; background:rgba(169,245,207,.12); color:var(--green); font-size:12px; font-weight:800;
 }
-.upload-card,.results-shell {
-  padding:25px; background:var(--panel);
-  border:1px solid var(--border); border-radius:24px;
-}
+.upload-card,.results-shell { padding:25px; background:var(--panel); border:1px solid var(--border); border-radius:24px; }
 .upload-card h3 { margin-bottom:5px; font-size:21px; }
 .upload-card>p { color:var(--muted); font-size:13px; margin-bottom:21px; }
 .dropzone {
-  display:block; padding:35px 18px; text-align:center;
-  border:1px dashed rgba(169,245,207,.43);
-  background:rgba(169,245,207,.035); border-radius:17px;
-  cursor:pointer; transition:background .2s;
+  display:block; padding:35px 18px; text-align:center; border:1px dashed rgba(169,245,207,.43);
+  background:rgba(169,245,207,.035); border-radius:17px; cursor:pointer; transition:background .2s;
 }
 .dropzone:hover { background:rgba(169,245,207,.08); }
 .upload-icon { font-size:32px; margin-bottom:8px; }
@@ -191,29 +146,21 @@ section { padding:78px 0; }
 }
 .privacy strong { color:var(--white); }
 .notice {
-  display:none; padding:12px 14px; margin-top:14px;
-  background:rgba(169,245,207,.08);
-  border:1px solid rgba(169,245,207,.2);
-  border-radius:12px; color:var(--green);
+  display:none; padding:12px 14px; margin-top:14px; background:rgba(169,245,207,.08);
+  border:1px solid rgba(169,245,207,.2); border-radius:12px; color:var(--green);
   font-size:13px; overflow-wrap:anywhere; white-space:pre-wrap;
 }
-.notice.error {
-  color:var(--red); border-color:rgba(255,184,184,.25);
-  background:rgba(255,184,184,.07);
-}
+.notice.error { color:var(--red); border-color:rgba(255,184,184,.25); background:rgba(255,184,184,.07); }
 .results-shell { display:none; margin-top:24px; padding:0; overflow:hidden; }
 .results-header {
-  padding:23px 25px;
-  background:linear-gradient(120deg,rgba(169,245,207,.10),rgba(169,245,207,.025));
-  border-bottom:1px solid var(--border);
-  display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+  padding:23px 25px; background:linear-gradient(120deg,rgba(169,245,207,.10),rgba(169,245,207,.025));
+  border-bottom:1px solid var(--border); display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
 }
 .results-header h3 { font-size:22px; letter-spacing:-.5px; }
 .results-header p { color:var(--muted); font-size:13px; margin-top:4px; }
 .result-badge {
-  border:1px solid rgba(169,245,207,.25);
-  background:rgba(169,245,207,.08); color:var(--green);
-  padding:5px 9px; border-radius:999px; font-size:11px; white-space:nowrap;
+  border:1px solid rgba(169,245,207,.25); background:rgba(169,245,207,.08);
+  color:var(--green); padding:5px 9px; border-radius:999px; font-size:11px; white-space:nowrap;
 }
 .results-body { padding:25px; }
 .result-section { margin-bottom:24px; }
@@ -221,8 +168,7 @@ section { padding:78px 0; }
 .result-section h4 { font-size:16px; margin-bottom:10px; color:var(--green); }
 .result-content { color:#dbe7e8; font-size:14px; line-height:1.75; overflow-wrap:anywhere; }
 .result-content h1,.result-content h2,.result-content h3 {
-  font-size:17px; letter-spacing:0; line-height:1.4;
-  margin:18px 0 8px; color:var(--white);
+  font-size:17px; letter-spacing:0; line-height:1.4; margin:18px 0 8px; color:var(--white);
 }
 .result-content p { margin:0 0 10px; }
 .result-content ul,.result-content ol { padding-left:22px; margin:7px 0 12px; }
@@ -234,10 +180,45 @@ section { padding:78px 0; }
 .result-content blockquote { border-left:3px solid var(--green); padding-left:12px; color:var(--muted); margin:10px 0; }
 .results-footer { padding:15px 25px; border-top:1px solid var(--border); color:var(--muted); font-size:12px; }
 
+/* Smart Bill Audit Dashboard */
+.audit-dashboard { padding:25px; border-bottom:1px solid var(--border); }
+.audit-heading { font-size:24px; letter-spacing:-.6px; margin-bottom:5px; }
+.audit-intro,.audit-muted { color:var(--muted); font-size:13px; line-height:1.7; }
+.audit-metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin:20px 0 26px; }
+.audit-metric {
+  min-width:0; padding:16px; border:1px solid var(--border);
+  border-radius:15px; background:rgba(255,255,255,.025);
+}
+.audit-metric-label { display:block; color:var(--muted); font-size:12px; margin-bottom:7px; }
+.audit-metric-value { display:block; font-size:clamp(15px,2vw,21px); font-weight:800; overflow-wrap:anywhere; }
+.audit-section-title { font-size:17px; margin:25px 0 12px; }
+.audit-findings { display:grid; gap:12px; }
+.audit-finding { padding:17px; border:1px solid var(--border); background:rgba(255,255,255,.025); border-radius:15px; }
+.audit-finding h5 { font-size:15px; margin:3px 0 9px; }
+.audit-finding p { color:var(--muted); font-size:13px; line-height:1.7; margin:7px 0; overflow-wrap:anywhere; }
+.audit-tag {
+  display:inline-block; padding:3px 9px; border-radius:20px;
+  background:rgba(148,163,184,.13); font-size:10px; font-weight:800; text-transform:uppercase;
+}
+.audit-tag.medium { color:#fbbf24; background:rgba(245,158,11,.12); }
+.audit-tag.high { color:#fca5a5; background:rgba(239,68,68,.12); }
+.audit-tag.low { color:var(--green); }
+.audit-table-wrap { width:100%; overflow-x:auto; border:1px solid var(--border); border-radius:12px; }
+.audit-table { width:100%; border-collapse:collapse; font-size:13px; }
+.audit-table th,.audit-table td { padding:12px; border-bottom:1px solid var(--border); text-align:left; vertical-align:top; }
+.audit-table th { color:var(--green); background:rgba(169,245,207,.05); }
+.audit-table td:last-child,.audit-table th:last-child { text-align:right; white-space:nowrap; }
+.audit-question-list { padding-left:22px; color:#dbe7e8; font-size:13px; line-height:1.8; }
+.audit-question-list li { margin-bottom:8px; }
+.audit-disclaimer {
+  margin-top:22px; padding:13px 15px; border-left:3px solid var(--green);
+  border-radius:5px; background:rgba(52,211,153,.06); color:var(--muted); font-size:12px; line-height:1.7;
+}
+
 .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:stretch; }
 .price-card {
-  background:var(--panel); border:1px solid var(--border);
-  padding:28px; border-radius:23px; display:flex; flex-direction:column;
+  background:var(--panel); border:1px solid var(--border); padding:28px;
+  border-radius:23px; display:flex; flex-direction:column;
 }
 .price-card.popular { border-color:var(--green); box-shadow:0 0 35px rgba(169,245,207,.06); }
 .plan-label { color:var(--green); font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.8px; }
@@ -253,9 +234,8 @@ section { padding:78px 0; }
 .faq-list { max-width:800px; margin:auto; display:grid; gap:12px; }
 .faq-item { border:1px solid var(--border); border-radius:15px; background:var(--panel); overflow:hidden; }
 .faq-question {
-  display:flex; width:100%; text-align:left; align-items:center;
-  justify-content:space-between; gap:20px; padding:19px 21px;
-  border:0; color:var(--white); background:transparent; font-weight:700;
+  display:flex; width:100%; text-align:left; align-items:center; justify-content:space-between;
+  gap:20px; padding:19px 21px; border:0; color:var(--white); background:transparent; font-weight:700;
 }
 .faq-question span:last-child { color:var(--green); font-size:22px; }
 .faq-answer { display:none; color:var(--muted); font-size:14px; padding:0 21px 20px; }
@@ -264,24 +244,17 @@ section { padding:78px 0; }
 
 .cta { padding:35px 0 90px; }
 .cta-panel {
-  background:linear-gradient(125deg,#163a42,#123028);
-  border:1px solid rgba(169,245,207,.17);
+  background:linear-gradient(125deg,#163a42,#123028); border:1px solid rgba(169,245,207,.17);
   border-radius:27px; padding:49px 25px; text-align:center;
 }
 .cta-panel h2 { font-size:clamp(29px,4vw,43px); letter-spacing:-1.3px; margin-bottom:13px; }
 .cta-panel p { color:#c1d7d0; margin-bottom:24px; }
 footer { border-top:1px solid var(--border); padding:28px 0; }
-.footer-inner {
-  display:flex; justify-content:space-between; align-items:center;
-  flex-wrap:wrap; gap:16px; color:var(--muted); font-size:12px;
-}
+.footer-inner { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; color:var(--muted); font-size:12px; }
 .footer-links { display:flex; gap:19px; flex-wrap:wrap; }
 .loading-dots:after { content:""; animation:dots 1.2s steps(4,end) infinite; }
 @keyframes dots {
-  0%,20% { content:""; }
-  40% { content:"."; }
-  60% { content:".."; }
-  80%,100% { content:"..."; }
+  0%,20% { content:""; } 40% { content:"."; } 60% { content:".."; } 80%,100% { content:"..."; }
 }
 @media(max-width:850px) {
   .nav-links { gap:14px; }
@@ -290,6 +263,9 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
   .hero { padding-top:65px; }
   .features,.pricing-grid { grid-template-columns:1fr 1fr; }
   .price-card:last-child { grid-column:1/-1; }
+}
+@media(max-width:650px) {
+  .audit-metrics { grid-template-columns:repeat(2,minmax(0,1fr)); }
 }
 @media(max-width:540px) {
   .container { width:91%; }
@@ -307,8 +283,10 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
   .preview,.upload-card { padding:20px; }
   .cta-panel { padding:35px 19px; }
   .results-header { padding:20px; flex-direction:column; }
-  .results-body { padding:20px; }
+  .results-body,.audit-dashboard { padding:20px; }
   .results-footer { padding:14px 20px; }
+  .audit-metrics { grid-template-columns:1fr 1fr; gap:8px; }
+  .audit-metric { padding:12px; }
 }
 </style>
 </head>
@@ -352,10 +330,7 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
     </div>
     <div class="preview">
       <div class="preview-top">
-        <div>
-          <div class="preview-label">ILLUSTRATIVE BILL PREVIEW</div>
-          <h3>Medical expense summary</h3>
-        </div>
+        <div><div class="preview-label">ILLUSTRATIVE BILL PREVIEW</div><h3>Medical expense summary</h3></div>
         <span class="status">Example</span>
       </div>
       <div class="preview-label">Total amount billed</div>
@@ -426,7 +401,13 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
         </div>
         <span class="result-badge">AI-assisted review</span>
       </div>
+
+      <!-- New Smart Bill Audit Dashboard -->
+      <div id="auditDashboardMount"></div>
+
+      <!-- Existing AI-generated written review -->
       <div class="results-body" id="resultsBody"></div>
+
       <div class="results-footer">Informational review only. Ask your provider or insurer to confirm disputed charges. AI can misread documents.</div>
     </div>
   </div>
@@ -462,7 +443,6 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
         <a href="#analyze" class="btn btn-outline">Explore</a>
       </article>
     </div>
-
     <p class="pricing-disclaimer">Subscription prices are illustrative. Currency conversion is for display only; it does not change the actual subscription price or convert the amounts printed on an uploaded bill.</p>
     <p id="currencyStatus" class="pricing-disclaimer" role="status">Loading live exchange rates...</p>
     <p class="pricing-disclaimer">Exchange-rate data by <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener noreferrer" style="color:var(--green);text-decoration:underline">ExchangeRate-API</a>.</p>
@@ -512,33 +492,20 @@ footer { border-top:1px solid var(--border); padding:28px 0; }
 <script>
 "use strict";
 
-/* Existing MedSave AI backend */
 const API_URL = "https://medsave-api.onrender.com/api/analyze";
 
-/* ---------------------------------------
-   LIVE CURRENCY CONVERSION
-   All data-money values are stored in AED.
----------------------------------------- */
+/* LIVE CURRENCY CONVERSION: site examples are stored in AED */
 const currencySelect = document.getElementById("currency");
 const currencyStatus = document.getElementById("currencyStatus");
 
 const currencyLocales = {
-  AED: "en-AE",
-  USD: "en-US",
-  INR: "en-IN",
-  EUR: "de-DE",
-  GBP: "en-GB",
-  SAR: "en-SA"
+  AED:"en-AE", USD:"en-US", INR:"en-IN",
+  EUR:"de-DE", GBP:"en-GB", SAR:"en-SA"
 };
 
-/* Fallback only; these rates can become outdated. */
 const fallbackRates = {
-  AED: 1,
-  USD: 0.272294,
-  INR: 26.3093,
-  EUR: 0.242807,
-  GBP: 0.205894,
-  SAR: 1.02231
+  AED:1, USD:0.272294, INR:26.3093,
+  EUR:0.242807, GBP:0.205894, SAR:1.02231
 };
 
 let currencyRates = { ...fallbackRates };
@@ -550,49 +517,34 @@ const RATE_CACHE_DURATION = 24 * 60 * 60 * 1000;
 function formatMoney(aedAmount) {
   const currency = currencySelect.value;
   const rate = currencyRates[currency] || fallbackRates[currency] || 1;
-  const converted = Number(aedAmount) * rate;
-
   return new Intl.NumberFormat(currencyLocales[currency] || "en-AE", {
-    style: "currency",
-    currency,
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  }).format(converted);
+    style:"currency", currency,
+    minimumFractionDigits:2, maximumFractionDigits:2
+  }).format(Number(aedAmount) * rate);
 }
 
 function updateCurrency() {
-  document.querySelectorAll("[data-money]").forEach(element => {
-    element.textContent = formatMoney(element.dataset.money);
+  document.querySelectorAll("[data-money]").forEach(el => {
+    el.textContent = formatMoney(el.dataset.money);
   });
 
   if (currencyStatus) {
-    if (usingLiveRates) {
-      currencyStatus.textContent =
-        `Live exchange rates loaded · Last updated by provider: ${ratesUpdatedAt}`;
-    } else {
-      currencyStatus.textContent =
-        "Live rates unavailable. Showing fallback estimates; these may be outdated.";
-    }
+    currencyStatus.textContent = usingLiveRates
+      ? `Live exchange rates loaded · Last updated by provider: ${ratesUpdatedAt}`
+      : "Live rates unavailable. Showing fallback estimates; these may be outdated.";
   }
 }
 
 async function loadCurrencyRates() {
-  /* Use cached rates if they are less than 24 hours old. */
   try {
     const cachedText = localStorage.getItem(RATE_CACHE_KEY);
-
     if (cachedText) {
       const cached = JSON.parse(cachedText);
-      const required = ["AED", "USD", "INR", "EUR", "GBP", "SAR"];
-
-      const validRates = cached.rates &&
-        required.every(code =>
-          Number.isFinite(cached.rates[code]) && cached.rates[code] > 0
-        );
-
-      const fresh = Date.now() - cached.savedAt < RATE_CACHE_DURATION;
-
-      if (validRates && fresh) {
+      const required = ["AED","USD","INR","EUR","GBP","SAR"];
+      const valid = cached.rates && required.every(code =>
+        Number.isFinite(cached.rates[code]) && cached.rates[code] > 0
+      );
+      if (valid && Date.now() - cached.savedAt < RATE_CACHE_DURATION) {
         currencyRates = cached.rates;
         ratesUpdatedAt = cached.updatedAt || "Previously fetched";
         usingLiveRates = true;
@@ -606,84 +558,63 @@ async function loadCurrencyRates() {
 
   try {
     const response = await fetch("https://open.er-api.com/v6/latest/AED", {
-      method: "GET",
-      headers: { "Accept": "application/json" },
-      cache: "no-store"
+      headers:{ Accept:"application/json" }, cache:"no-store"
     });
-
-    if (!response.ok) {
-      throw new Error(`Exchange service returned HTTP ${response.status}`);
-    }
+    if (!response.ok) throw new Error(`Exchange service returned HTTP ${response.status}`);
 
     const data = await response.json();
-
     if (data.result !== "success" || !data.rates) {
       throw new Error("Invalid exchange-rate response.");
     }
 
-    const required = ["AED", "USD", "INR", "EUR", "GBP", "SAR"];
-    const newRates = {};
+    const required = ["AED","USD","INR","EUR","GBP","SAR"];
+    const rates = {};
 
     for (const code of required) {
       const rate = data.rates[code];
-
       if (!Number.isFinite(rate) || rate <= 0) {
         throw new Error(`No valid exchange rate for ${code}.`);
       }
-
-      newRates[code] = rate;
+      rates[code] = rate;
     }
 
-    currencyRates = newRates;
+    currencyRates = rates;
     ratesUpdatedAt = data.time_last_update_utc || "Recently fetched";
     usingLiveRates = true;
 
     try {
       localStorage.setItem(RATE_CACHE_KEY, JSON.stringify({
-        rates: currencyRates,
-        updatedAt: ratesUpdatedAt,
-        savedAt: Date.now()
+        rates:currencyRates, updatedAt:ratesUpdatedAt, savedAt:Date.now()
       }));
     } catch (error) {
       console.warn("Could not cache currency rates:", error);
     }
-
-    updateCurrency();
   } catch (error) {
     console.warn("Live exchange rates unavailable:", error);
-
-    /* Keep valid cached rates if available; otherwise use fallbacks. */
     currencyRates = { ...fallbackRates };
     usingLiveRates = false;
     ratesUpdatedAt = "";
-    updateCurrency();
   }
+
+  updateCurrency();
 }
 
 currencySelect.addEventListener("change", updateCurrency);
-
-/* Display estimates immediately while live rates load. */
 updateCurrency();
 loadCurrencyRates();
 
-/* ---------------------------------------
-   GENERAL PAGE INTERACTIONS
----------------------------------------- */
 document.getElementById("year").textContent = new Date().getFullYear();
 
 document.querySelectorAll(".faq-question").forEach(button => {
   button.addEventListener("click", () => {
     const item = button.closest(".faq-item");
     const isOpen = !item.classList.contains("open");
-
     item.classList.toggle("open", isOpen);
     button.setAttribute("aria-expanded", String(isOpen));
   });
 });
 
-/* ---------------------------------------
-   MEDICAL BILL UPLOAD AND AI ANALYSIS
----------------------------------------- */
+/* UPLOAD AND AI ANALYSIS */
 const fileInput = document.getElementById("billFile");
 const fileName = document.getElementById("fileName");
 const analyzeBtn = document.getElementById("analyzeBtn");
@@ -691,6 +622,7 @@ const uploadNotice = document.getElementById("uploadNotice");
 const results = document.getElementById("results");
 const resultsBody = document.getElementById("resultsBody");
 const resultsSubtitle = document.getElementById("resultsSubtitle");
+const auditDashboardMount = document.getElementById("auditDashboardMount");
 
 function showNotice(message, isError = false) {
   uploadNotice.textContent = message;
@@ -698,24 +630,24 @@ function showNotice(message, isError = false) {
   uploadNotice.style.display = "block";
 }
 
+function clearPreviousResults() {
+  results.style.display = "none";
+  resultsBody.replaceChildren();
+  auditDashboardMount.replaceChildren();
+}
+
 fileInput.addEventListener("change", () => {
   uploadNotice.style.display = "none";
-  results.style.display = "none";
+  clearPreviousResults();
 
   const file = fileInput.files[0];
-
   if (!file) {
     fileName.textContent = "";
     return;
   }
 
-  const allowedTypes = [
-    "application/pdf",
-    "image/jpeg",
-    "image/png"
-  ];
-
-  if (!allowedTypes.includes(file.type)) {
+  const allowed = ["application/pdf","image/jpeg","image/png"];
+  if (!allowed.includes(file.type)) {
     fileInput.value = "";
     fileName.textContent = "";
     showNotice("Please select a PDF, JPG, or PNG file.", true);
@@ -731,16 +663,12 @@ fileInput.addEventListener("change", () => {
 
   fileName.textContent =
     `Selected: ${file.name} (${(file.size / 1024 / 1024).toFixed(2)} MB)`;
-});
+}
 
-/* Escape AI output before rendering it as HTML. */
+/* Render the existing written AI review */
 function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
+    "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
   }[char]));
 }
 
@@ -752,10 +680,7 @@ function inlineMarkdown(text) {
 
 function markdownToHtml(markdown) {
   const lines = escapeHtml(markdown || "").replace(/\r/g, "").split("\n");
-  let html = "";
-  let paragraph = [];
-  let listType = null;
-  let tableRows = [];
+  let html = "", paragraph = [], listType = null, tableRows = [];
 
   function flushParagraph() {
     if (paragraph.length) {
@@ -763,71 +688,46 @@ function markdownToHtml(markdown) {
       paragraph = [];
     }
   }
-
   function flushList() {
     if (listType) {
       html += `</${listType}>`;
       listType = null;
     }
   }
-
   function flushTable() {
     if (!tableRows.length) return;
-
-    const filtered = tableRows.filter(row =>
-      !/^\s*\|?\s*:?-{3,}/.test(row)
-    );
-
+    const filtered = tableRows.filter(row => !/^\s*\|?\s*:?-{3,}/.test(row));
     if (filtered.length) {
       html += "<table>";
-
-      filtered.forEach((row, index) => {
-        const cells = row.trim()
-          .replace(/^\|/, "")
-          .replace(/\|$/, "")
-          .split("|")
-          .map(cell => cell.trim());
-
+      filtered.forEach((row,index) => {
+        const cells = row.trim().replace(/^\|/,"").replace(/\|$/,"").split("|").map(cell => cell.trim());
         html += "<tr>";
-
         cells.forEach(cell => {
           const tag = index === 0 ? "th" : "td";
           html += `<${tag}>${inlineMarkdown(cell)}</${tag}>`;
         });
-
         html += "</tr>";
       });
-
       html += "</table>";
     }
-
     tableRows = [];
   }
 
   for (const raw of lines) {
     const line = raw.trim();
-
     if (!line) {
-      flushParagraph();
-      flushList();
-      flushTable();
+      flushParagraph(); flushList(); flushTable();
       continue;
     }
-
     if (line.includes("|") && line.split("|").length >= 3) {
-      flushParagraph();
-      flushList();
-      tableRows.push(line);
+      flushParagraph(); flushList(); tableRows.push(line);
       continue;
     }
-
     flushTable();
 
     const heading = line.match(/^(#{1,3})\s+(.+)/);
-
     if (heading) {
-      flushParagraph();
-      flushList();
+      flushParagraph(); flushList();
       const level = heading[1].length;
       html += `<h${level}>${inlineMarkdown(heading[2])}</h${level}>`;
       continue;
@@ -839,20 +739,15 @@ function markdownToHtml(markdown) {
     if (unordered || ordered) {
       flushParagraph();
       const nextType = unordered ? "ul" : "ol";
-
       if (listType !== nextType) {
-        flushList();
-        listType = nextType;
-        html += `<${listType}>`;
+        flushList(); listType = nextType; html += `<${listType}>`;
       }
-
       html += `<li>${inlineMarkdown((unordered || ordered)[1])}</li>`;
       continue;
     }
 
     if (line.startsWith("&gt; ")) {
-      flushParagraph();
-      flushList();
+      flushParagraph(); flushList();
       html += `<blockquote>${inlineMarkdown(line.slice(5))}</blockquote>`;
       continue;
     }
@@ -861,16 +756,12 @@ function markdownToHtml(markdown) {
     paragraph.push(inlineMarkdown(line));
   }
 
-  flushParagraph();
-  flushList();
-  flushTable();
-
+  flushParagraph(); flushList(); flushTable();
   return html || "<p>No review text was returned.</p>";
 }
 
 function renderReview(markdown) {
-  resultsBody.innerHTML = "";
-
+  resultsBody.replaceChildren();
   const chunks = String(markdown || "")
     .split(/(?=^#{1,2}\s+)/m)
     .filter(chunk => chunk.trim());
@@ -885,8 +776,7 @@ function renderReview(markdown) {
 
   chunks.forEach(chunk => {
     const firstLine = chunk.split("\n")[0].trim();
-    const title = firstLine.replace(/^#{1,2}\s*/, "") || "Bill review";
-
+    const title = firstLine.replace(/^#{1,2}\s*/,"") || "Bill review";
     const section = document.createElement("section");
     section.className = "result-section";
 
@@ -895,13 +785,161 @@ function renderReview(markdown) {
 
     const content = document.createElement("div");
     content.className = "result-content";
-    content.innerHTML = markdownToHtml(
-      chunk.replace(/^#{1,2}\s+[^\n]+\n?/, "")
-    );
+    content.innerHTML = markdownToHtml(chunk.replace(/^#{1,2}\s+[^\n]+\n?/,""));
 
     section.append(heading, content);
     resultsBody.appendChild(section);
   });
+}
+
+/* SMART BILL AUDIT DASHBOARD */
+function renderAuditDashboard(audit, isMedicalBill) {
+  auditDashboardMount.replaceChildren();
+
+  const root = document.createElement("section");
+  root.className = "audit-dashboard";
+
+  function make(tag, className, text) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text !== undefined && text !== null) node.textContent = String(text);
+    return node;
+  }
+
+  function add(parent, tag, className, text) {
+    const node = make(tag, className, text);
+    parent.appendChild(node);
+    return node;
+  }
+
+  if (isMedicalBill === false) {
+    add(root, "h3", "audit-heading", "Medical bill not detected");
+    add(root, "p", "audit-muted",
+      "This document could not be identified as a medical bill. Try a clear PDF, JPG, or PNG of the bill.");
+    auditDashboardMount.appendChild(root);
+    return;
+  }
+
+  if (!audit || typeof audit !== "object") {
+    add(root, "h3", "audit-heading", "Structured audit data unavailable");
+    add(root, "p", "audit-muted",
+      "The written review may still be available, but the backend did not return structured audit data. Try again after checking the backend deployment.");
+    auditDashboardMount.appendChild(root);
+    return;
+  }
+
+  const totals = audit.totals || {};
+  const aliases = { "$":"USD", "US$":"USD", "د.إ":"AED", "₹":"INR", "€":"EUR", "£":"GBP", "ر.س":"SAR" };
+  let currency = String(audit.currency || "AED").trim().toUpperCase();
+  if (aliases[audit.currency]) currency = aliases[audit.currency];
+  const supported = ["AED","USD","INR","EUR","GBP","SAR"];
+
+  function money(value) {
+    if (typeof value !== "number" || !Number.isFinite(value)) return "Not identified";
+    if (!supported.includes(currency)) return `${value.toFixed(2)} ${currency}`;
+    try {
+      return new Intl.NumberFormat(undefined, {
+        style:"currency", currency, maximumFractionDigits:2
+      }).format(value);
+    } catch {
+      return `${value.toFixed(2)} ${currency}`;
+    }
+  }
+
+  add(root, "h3", "audit-heading", "Smart Bill Audit");
+  add(root, "p", "audit-intro",
+    "A structured view of the information extracted from your document. Check each figure against the original bill.");
+
+  const metrics = make("div", "audit-metrics");
+  [
+    ["Total billed", totals.totalBilled],
+    ["Insurance paid", totals.insurancePaid],
+    ["Adjustments", totals.adjustments],
+    ["Patient balance", totals.patientBalance],
+    ["Line-item subtotal", totals.lineItemSubtotal]
+  ].forEach(([label,value]) => {
+    const card = make("div", "audit-metric");
+    add(card, "span", "audit-metric-label", label);
+    add(card, "strong", "audit-metric-value", money(value));
+    metrics.appendChild(card);
+  });
+  root.appendChild(metrics);
+
+  const findings = Array.isArray(audit.findings) ? audit.findings : [];
+  add(root, "h4", "audit-section-title", `Items to check (${findings.length})`);
+
+  if (!findings.length) {
+    add(root, "p", "audit-muted",
+      "No specific flags were returned. This does not guarantee that every charge is correct.");
+  } else {
+    const list = make("div", "audit-findings");
+    findings.forEach(finding => {
+      const card = make("article", "audit-finding");
+      const severity = ["low","medium","high"].includes(finding.severity) ? finding.severity : "low";
+      add(card, "span", `audit-tag ${severity}`, severity);
+      add(card, "h5", "", finding.title || "Item to review");
+      add(card, "p", "", `Evidence: ${finding.evidence || "Not specified."}`);
+
+      if (finding.explanation) add(card, "p", "", finding.explanation);
+      if (finding.suggestedQuestion) {
+        add(card, "p", "", `Ask the provider: ${finding.suggestedQuestion}`);
+      }
+      list.appendChild(card);
+    });
+    root.appendChild(list);
+  }
+
+  const lineItems = Array.isArray(audit.lineItems) ? audit.lineItems : [];
+  add(root, "h4", "audit-section-title", `Extracted line items (${lineItems.length})`);
+
+  if (!lineItems.length) {
+    add(root, "p", "audit-muted",
+      "No individual line items were returned. Refer to the written review below.");
+  } else {
+    const wrapper = make("div", "audit-table-wrap");
+    const table = make("table", "audit-table");
+    const thead = make("thead");
+    const header = make("tr");
+
+    ["Description","Quantity","Amount"].forEach(label => add(header, "th", "", label));
+    thead.appendChild(header);
+    table.appendChild(thead);
+
+    const tbody = make("tbody");
+    lineItems.forEach(item => {
+      const row = make("tr");
+      add(row, "td", "", item.description || "Unclear description");
+      add(row, "td", "", typeof item.quantity === "number" ? item.quantity : "—");
+      add(row, "td", "", money(item.amount));
+      tbody.appendChild(row);
+    });
+
+    table.appendChild(tbody);
+    wrapper.appendChild(table);
+    root.appendChild(wrapper);
+
+    if (audit.lineItemsComplete !== true) {
+      add(root, "p", "audit-muted",
+        "The extracted line-item list may be incomplete. Its sum should not be treated as a verified bill total.");
+    }
+  }
+
+  const questions = Array.isArray(audit.questions) ? audit.questions : [];
+  add(root, "h4", "audit-section-title", "Questions to ask");
+
+  if (!questions.length) {
+    add(root, "p", "audit-muted",
+      "No additional questions were returned. You can use the suggested questions in the findings above.");
+  } else {
+    const ol = make("ol", "audit-question-list");
+    questions.forEach(question => add(ol, "li", "", question));
+    root.appendChild(ol);
+  }
+
+  add(root, "p", "audit-disclaimer",
+    "AI-assisted information only. A flagged item is not proof of an error, and an unflagged bill is not guaranteed to be correct. Confirm concerns with your provider or insurer.");
+
+  auditDashboardMount.appendChild(root);
 }
 
 analyzeBtn.addEventListener("click", async () => {
@@ -913,12 +951,7 @@ analyzeBtn.addEventListener("click", async () => {
     return;
   }
 
-  const allowedTypes = [
-    "application/pdf",
-    "image/jpeg",
-    "image/png"
-  ];
-
+  const allowedTypes = ["application/pdf","image/jpeg","image/png"];
   if (!allowedTypes.includes(file.type)) {
     showNotice("Please choose a PDF, JPG, or PNG file.", true);
     return;
@@ -929,28 +962,21 @@ analyzeBtn.addEventListener("click", async () => {
     return;
   }
 
-  const originalButtonText = "Analyze my bill ↗";
-
   analyzeBtn.disabled = true;
-  analyzeBtn.innerHTML =
-    '<span class="loading-dots">Analyzing your bill</span>';
-
-  showNotice(
-    "Sending your document for analysis. The server may take a little while to wake up."
-  );
-  results.style.display = "none";
+  analyzeBtn.textContent = "Analyzing...";
+  showNotice("Sending your document for analysis. The server may take a little while to wake up.");
+  clearPreviousResults();
 
   try {
     const formData = new FormData();
     formData.append("bill", file);
 
     const response = await fetch(API_URL, {
-      method: "POST",
-      body: formData
+      method:"POST",
+      body:formData
     });
 
     let data;
-
     try {
       data = await response.json();
     } catch {
@@ -961,35 +987,23 @@ analyzeBtn.addEventListener("click", async () => {
       throw new Error(data.error || "Analysis failed. Please try again.");
     }
 
-    if (!data.review) {
-      throw new Error("No review was returned. Please try again.");
-    }
+    if (!data.review) throw new Error("No review was returned. Please try again.");
 
+    renderAuditDashboard(data.audit, data.isMedicalBill);
     renderReview(data.review);
 
     resultsSubtitle.textContent =
       `Review generated for ${file.name}. Check every figure against the original bill.`;
-
     results.style.display = "block";
 
-    showNotice(
-      "Review ready. Verify important details against your original document."
-    );
-
-    results.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
+    showNotice("Review ready. Verify important details against your original document.");
+    results.scrollIntoView({ behavior:"smooth", block:"start" });
   } catch (error) {
     console.error("MedSave analysis error:", error);
-
-    showNotice(
-      error.message || "We couldn't analyze the document. Please try again.",
-      true
-    );
+    showNotice(error.message || "We couldn't analyze the document. Please try again.", true);
   } finally {
     analyzeBtn.disabled = false;
-    analyzeBtn.textContent = originalButtonText;
+    analyzeBtn.textContent = "Analyze my bill ↗";
   }
 });
 </script>
