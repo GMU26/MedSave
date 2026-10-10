@@ -1,15 +1,10 @@
-
 {
   "name": "medsave-api",
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "scripts": {
-    "start": "node server.js"
-  },
-  "engines": {
-    "node": ">=20"
-  },
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=20" },
   "dependencies": {
     "@google/genai": "^2.0.0",
     "cors": "^2.8.5",
@@ -18,4 +13,3 @@
     "multer": "^2.0.0"
   }
 }
-
