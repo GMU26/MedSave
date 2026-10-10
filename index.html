@@ -265,7 +265,9 @@ footer{border-top:1px solid var(--border);padding:28px 0}
 "use strict";
 
 const API_URL = "https://medsave-api.onrender.com/api/analyze";
+
 const currencySelect = document.getElementById("currency");
+
 const currencyLocales = {
   AED: "en-AE",
   USD: "en-US",
@@ -275,20 +277,88 @@ const currencyLocales = {
   SAR: "en-SA"
 };
 
+// All rates represent how much of the target currency
+// equals 1 AED. These are fallback estimates if the API fails.
+let currencyRates = {
+  AED: 1,
+  USD: 0.272294,
+  INR: 26.3093,
+  EUR: 0.242807,
+  GBP: 0.205894,
+  SAR: 1.02231
+};
+
 function formatMoney(amount) {
   const currency = currencySelect.value;
+  const rate = currencyRates[currency] ?? 1;
+  const convertedAmount = Number(amount) * rate;
+
   try {
     return new Intl.NumberFormat(currencyLocales[currency], {
       style: "currency",
       currency,
       maximumFractionDigits: 2
-    }).format(Number(amount));
+    }).format(convertedAmount);
   } catch {
-    return `${currency} ${amount}`;
+    return `${currency} ${convertedAmount.toFixed(2)}`;
   }
 }
 
 function updateCurrency() {
+  document.querySelectorAll("[data-money]").forEach(element => {
+    element.textContent = formatMoney(element.dataset.money);
+  });
+}
+
+async function loadCurrencyRates() {
+  try {
+    const response = await fetch(
+      "https://open.er-api.com/v6/latest/AED"
+    );
+
+    if (!response.ok) {
+      throw new Error("Exchange-rate request failed.");
+    }
+
+    const data = await response.json();
+
+    if (data.result !== "success" || !data.rates) {
+      throw new Error("Exchange rates were unavailable.");
+    }
+
+    const updatedRates = { AED: 1 };
+
+    for (const currency of Object.keys(currencyLocales)) {
+      const rate = Number(data.rates[currency]);
+
+      if (Number.isFinite(rate) && rate > 0) {
+        updatedRates[currency] = rate;
+      }
+    }
+
+    currencyRates = {
+      ...currencyRates,
+      ...updatedRates
+    };
+
+    updateCurrency();
+  } catch (error) {
+    console.warn(
+      "Using fallback exchange rates:",
+      error.message
+    );
+
+    // The approximate fallback rates remain available.
+    updateCurrency();
+  }
+}
+
+currencySelect.addEventListener("change", updateCurrency);
+
+// Render immediately, then update when exchange rates load.
+updateCurrency();
+loadCurrencyRates();
+
   document.querySelectorAll("[data-money]").forEach(el => {
     el.textContent = formatMoney(el.dataset.money);
   });
