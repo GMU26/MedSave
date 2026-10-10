@@ -81,7 +81,7 @@ State what was unreadable, missing or uncertain. Explain that the provider or in
 Rules: Never invent amounts, codes, services, dates or provider details. Separate visible facts from possible concerns. Do not diagnose or determine medical necessity. Do not promise savings or reimbursement. Do not repeat patient names, addresses, phone numbers, patient IDs, insurance IDs or other personal identifiers. If this is not a medical bill or cannot be read, say so clearly instead of fabricating a review. Keep the answer clear and detailed but avoid repeating points.
 `;
       const response = await ai.models.generateContent({
-        model: process.env.GEMINI_MODEL || "gemini-2.5-flash",
+        model: process.env.GEMINI_MODEL || "gemini-3.8-flash",
         contents: [{
           role: "user",
           parts: [
