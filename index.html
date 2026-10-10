@@ -304,6 +304,43 @@ function formatMoney(amount) {
   }
 }
 
+
+
+const currencySelect = document.getElementById("currency");
+
+const currencyLocales = {
+  AED: "en-AE",
+  USD: "en-US",
+  INR: "en-IN",
+  EUR: "de-DE",
+  GBP: "en-GB",
+  SAR: "en-SA"
+};
+
+let currencyRates = {
+  AED: 1,
+  USD: 0.272294,
+  INR: 26.3093,
+  EUR: 0.242807,
+  GBP: 0.205894,
+  SAR: 1.02231
+};
+
+function formatMoney(amountAED) {
+  const currency = currencySelect.value;
+  const rate = currencyRates[currency] ?? 1;
+  const convertedAmount = Number(amountAED) * rate;
+
+  return new Intl.NumberFormat(
+    currencyLocales[currency] || "en",
+    {
+      style: "currency",
+      currency,
+      maximumFractionDigits: 2
+    }
+  ).format(convertedAmount);
+}
+
 function updateCurrency() {
   document.querySelectorAll("[data-money]").forEach(element => {
     element.textContent = formatMoney(element.dataset.money);
@@ -317,55 +354,35 @@ async function loadCurrencyRates() {
     );
 
     if (!response.ok) {
-      throw new Error("Exchange-rate request failed.");
+      throw new Error("Exchange-rate request failed");
     }
 
     const data = await response.json();
 
     if (data.result !== "success" || !data.rates) {
-      throw new Error("Exchange rates were unavailable.");
+      throw new Error("Exchange rates unavailable");
     }
 
-    const updatedRates = { AED: 1 };
-
-    for (const currency of Object.keys(currencyLocales)) {
+    Object.keys(currencyLocales).forEach(currency => {
       const rate = Number(data.rates[currency]);
 
       if (Number.isFinite(rate) && rate > 0) {
-        updatedRates[currency] = rate;
+        currencyRates[currency] = rate;
       }
-    }
-
-    currencyRates = {
-      ...currencyRates,
-      ...updatedRates
-    };
+    });
 
     updateCurrency();
   } catch (error) {
-    console.warn(
-      "Using fallback exchange rates:",
-      error.message
-    );
-
-    // The approximate fallback rates remain available.
+    console.warn("Using fallback exchange rates:", error);
     updateCurrency();
   }
 }
 
 currencySelect.addEventListener("change", updateCurrency);
 
-// Render immediately, then update when exchange rates load.
 updateCurrency();
 loadCurrencyRates();
 
-  document.querySelectorAll("[data-money]").forEach(el => {
-    el.textContent = formatMoney(el.dataset.money);
-  });
-}
-
-currencySelect.addEventListener("change", updateCurrency);
-updateCurrency();
 document.getElementById("year").textContent = new Date().getFullYear();
 
 document.querySelectorAll(".faq-question").forEach(button => {
