@@ -1,0 +1,21 @@
+
+{
+  "name": "medsave-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "MedSave medical bill review API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "helmet": "^8.0.0",
+    "multer": "^2.0.0",
+    "openai": "^5.0.0"
+  }
+}
